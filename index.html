@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maheshkumar S — Academic Portfolio</title>
+  <meta name="description" content="Academic portfolio of Maheshkumar S — PhD Scholar, publications, conferences, workshops, achievements, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card:#121832cc;
+      --text:#e9eefb;
+      --muted:#9aa7c7;
+      --accent:#6ee7ff;
+      --accent-2:#9b8cff;
+      --border: #26304d;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    [data-theme="light"]{
+      --bg:#f6f7fb;
+      --card:#ffffffcc;
+      --text:#0f172a;
+      --muted:#334155;
+      --accent:#0ea5e9;
+      --accent-2:#7c3aed;
+      --border:#e5e7eb;
+      --shadow: 0 10px 24px rgba(2,6,23,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    /* base page */
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; color:var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(108,99,255,.15), transparent 60%),
+                  radial-gradient(1200px 600px at 110% 10%, rgba(14,165,233,.12), transparent 60%),
+                  var(--bg);
+      backdrop-filter:saturate(120%);
+      min-height:100vh;
+    }
+
+    /* animated gradient overlay */
+    body::before{
+      content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
+      background: linear-gradient(270deg,#16213e,#0f172a,#2b2540,#13293d);
+      background-size: 800% 800%; opacity:.35; animation:grad 20s ease infinite;
+    }
+    @keyframes grad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* particle canvas */
+    #particle-bg{position:fixed; inset:0; z-index:-2}
+
+    a{color:var(--accent); text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(12px) saturate(120%);
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(10,15,30,.75), rgba(10,15,30,.40));
+    }
+    [data-theme="light"] header{background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:12px; height:64px}
+    .nav a.brand{font-weight:800; letter-spacing:.4px}
+    .nav .links{display:flex; gap:14px; flex-wrap:wrap}
+    .nav .links a{font-weight:600; color:var(--muted)}
+    .nav .links a:hover{color:var(--text)}
+    .theme-toggle{border:1px solid var(--border); padding:8px 10px; border-radius:999px; cursor:pointer; background:var(--card)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1.3fr .7fr; gap:28px; align-items:center; padding:64px 0}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .hero .intro{padding:28px}
+    .title{font-size:clamp(28px, 4vw, 44px); line-height:1.1; margin:0 0 12px}
+    .subtitle{font-size:clamp(16px,1.8vw,18px); color:var(--muted); margin-bottom:18px}
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin:16px 0}
+    .badge{border:1px solid var(--border); padding:6px 10px; border-radius:999px; font-size:13px; background:linear-gradient(145deg, rgba(110,231,255,.10), rgba(155,140,255,.08))}
+    .cta{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid var(--border); font-weight:700; letter-spacing:.3px; background:var(--card)}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1020; border:none}
+    .btn:hover{transform:translateY(-1px)}
+    .hero .photo{display:flex; align-items:center; justify-content:center; padding:12px}
+
+    /* Circular glowing profile */
+    .profile-img{width:220px; height:220px; border-radius:50%; overflow:hidden; border:6px solid rgba(255,255,255,.08); display:grid; place-items:center; background:linear-gradient(145deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); transition:box-shadow .25s, transform .25s}
+    .profile-img img{width:100%; height:100%; object-fit:cover; display:block}
+    .profile-img:hover{box-shadow:0 10px 50px rgba(155,140,255,.18); transform:translateY(-6px)}
+
+    /* Sections */
+    section{padding:28px; margin:22px 0}
+    section .section-title{font-size:22px; margin:0 0 14px; display:flex; align-items:center; gap:10px}
+    .grid{display:grid; gap:16px}
+    .grid.two{grid-template-columns:repeat(2,1fr)}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid.two,.grid.three{grid-template-columns:1fr}
+    }
+
+    .item{padding:16px; border:1px solid var(--border); border-radius:14px; background:linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02))}
+    .muted{color:var(--muted)}
+    .kpi{font-weight:800; font-size:20px}
+
+    /* Tables */
+    .table-wrap{overflow:auto; max-height:520px; border:1px solid var(--border); border-radius:12px}
+    table{width:100%; border-collapse:collapse; min-width:800px}
+    th,td{padding:10px 12px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top}
+    thead th{position:sticky; top:0; background:var(--card); z-index:1}
+    .filters{display:flex; gap:10px; margin:8px 0 14px}
+    .input{padding:10px 12px; border:1px solid var(--border); background:var(--card); color:var(--text); border-radius:10px}
+
+    /* Timeline pills */
+    .pill{display:inline-block; padding:4px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; color:var(--muted)}
+
+    /* Footer */
+    footer{padding:24px 0; text-align:center; color:var(--muted)}
+
+    /* Animations */
+    .reveal{opacity:0; transform:translateY(12px); transition:all .6s ease}
+    .reveal.in{opacity:1; transform:none}
+
+    /* Back to top */
+    #toTop{position:fixed; right:18px; bottom:18px; display:none; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:var(--card)}
+
+    /* Tag list */
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+
+    /* Responsive tweaks for long tables */
+    @media (max-width:700px){ table{min-width:600px} }
+  </style>
+</head>
+<body>
+  <!-- Particle background canvas -->
+  <canvas id="particle-bg" aria-hidden="true"></canvas>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">Maheshkumar&nbsp;S</a>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#conferences">Conferences</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#publications">Publications</a>
+        <a href="#books">Book Chapters</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card intro reveal">
+        <h1 class="title">Maheshkumar&nbsp;S</h1>
+        <p class="subtitle"><span id="typed"></span></p>
+        <div class="badges">
+          <span class="badge">PhD Scholar, Department of Rural Industries & Management</span>
+          <span class="badge">The Gandhigram Rural Institute – Deemed to be University</span>
+          <span class="badge">Tamil Nadu, India</span>
+        </div>
+        <div class="tags">
+          <a class="pill" href="mailto:smkc.edu@gmail.com"><i class="fa-solid fa-envelope"></i> smkc.edu@gmail.com</a>
+          <a class="pill" target="_blank" href="https://www.researchgate.net/profile/Maheshkumar-s"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
+          <a class="pill" target="_blank" href="https://scholar.google.com/citations?user=jzrBfd4AAAAJ&hl=en"><i class="fa-brands fa-google"></i> Google Scholar</a>
+          <a class="pill" target="_blank" href="https://www.linkedin.com/in/maheshkumar-s-963b3121a/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#publications"><i class="fa-solid fa-book-open"></i> Publications</a>
+          <a class="btn" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+        </div>
+      </div>
+      <div class="card photo reveal" aria-hidden="true">
+        <div class="profile-img">
+          <!-- replace your-photo.jpg with your actual photo file -->
+          <img src="dp.jpeg" alt="Maheshkumar S">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="card reveal">
+      <h2 class="section-title"><i class="fa-regular fa-id-card"></i> About</h2>
+      <p class="muted">Research interests span Employability Skills, Students Psychology, and Tourism Management Education Development. Experienced in IT Human Resources with strengths in multilingual communication (English, Marathi, Hindi), talent acquisition, policy implementation, and HR operations.</p>
+    </section>
+
+    <!-- EDUCATION / QUALIFICATIONS -->
+    <section id="education" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Educational Qualification</h2>
+      <div class="grid two">
+        <div class="item">
+          <div class="kpi">SSLC (2013–2014)</div>
+          <div class="muted">St. Paul’s Matriculation Higher Secondary School, Kovilpatti.</div>
+        </div>
+        <div class="item">
+          <div class="kpi">12th – Computer Science (2015–2016)</div>
+          <div class="muted">St. Paul’s Matriculation Higher Secondary School, Kovilpatti.</div>
+        </div>
+        <div class="item">
+          <div class="kpi">B.Sc. Information Technology (2016–2019)</div>
+          <div class="muted">Manonmaniam Sundaranar University — First Class.</div>
+        </div>
+        <div class="item">
+          <div class="kpi">MBA (HRM & OM)</div>
+          <div class="muted">The Gandhigram Rural Institute – Deemed to be University — First Class with A++.</div>
+        </div>
+        <div class="item">
+          <div class="kpi">Pursuing PhD (2019–2021 intake)</div>
+          <div class="muted">Department of Rural Industries and Management, GRI–DU.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
+      <div class="grid two">
+        <div class="item">
+          <div class="kpi">IT Human Resources Recruiter</div>
+          <div class="muted">01 Feb 2022 – 30 Apr 2022 · ₹5.8 LPA</div>
+          <p>Responsible for end-to-end recruitment and coordination across teams.</p>
+        </div>
+        <div class="item">
+          <div class="kpi">Assistant Manager — IT Human Resources</div>
+          <div class="muted">01 May 2022 – 30 Sep 2022 · ₹11.8 LPA</div>
+          <p>Managed HR functions across three branches in India — hiring, employee engagement, and performance management. Strengthened policy implementation and HR operations; collaborated across English, Marathi, and Hindi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERESTS & SKILLS -->
+    <section id="skills" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-sparkles"></i> Areas of Interest & Skills</h2>
+      <div class="grid two">
+        <div class="item">
+          <h3 style="margin:0 0 8px">Areas of Interest</h3>
+          <div class="tags">
+            <span class="pill">Employability Skills</span>
+            <span class="pill">Students Psychology</span>
+            <span class="pill">Tourism Management Education Development</span>
+          </div>
+        </div>
+        <div class="item">
+          <h3 style="margin:0 0 8px">Software Skill Set</h3>
+          <p><strong>Languages:</strong> C++, HTML, RDBMS, Java (Front & Back end)</p>
+          <p><strong>Packages:</strong> MS Office, Origin, basics of SPSS & JAMOVI</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Academic Distinctions & Awards</h2>
+      <ul>
+        <li>University First Class in B.Sc. Information Technology (MS University).</li>
+        <li>First Class with A++ in MBA (HRM & OM) at GRI–DU.</li>
+        <li>Best Research Scholar award (University level, 2024) at GRI–DU.</li>
+      </ul>
+    </section>
+
+    <!-- SPORTS -->
+    <section id="sports" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-medal"></i> Sports</h2>
+      <ul>
+        <li>National Champion in Silambam.</li>
+        <li>State Level: 5× Gold, 2× Silver, 1× Bronze.</li>
+        <li>District Level: 2× Gold.</li>
+      </ul>
+    </section>
+
+    <!-- CONFERENCES TABLE WITH FILTER -->
+    <section id="conferences" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-people-group"></i> Conferences</h2>
+      <div class="filters">
+        <input class="input" id="confSearch" placeholder="Search by year, title, venue, or topic…" />
+      </div>
+      <div class="table-wrap">
+        <table id="confTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Type / Conference</th>
+              <th>Venue / Organizer</th>
+              <th>Topic</th>
+              <th>Publication</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section id="workshops" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-chalkboard-user"></i> Workshops & Training</h2>
+      <div class="filters">
+        <input class="input" id="workshopSearch" placeholder="Search workshops…" />
+      </div>
+      <div class="table-wrap">
+        <table id="workshopTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Workshop</th>
+              <th>Date</th>
+              <th>Mode</th>
+              <th>Certificate</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SEMINARS -->
+    <section id="seminars" class="card reveal">
+      <h2 class="section-title"><i class="fa-regular fa-comments"></i> Seminars</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Seminar</th><th>Date</th><th>Certificate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Online National Seminar on “Fundamentals of Research Methodology” — Sangameshwar College, Solapur.</td><td>17 Apr 2023</td><td>Issued (Soft copy)</td></tr>
+            <tr><td>2</td><td>GYANOTSAV 2023 — Roadmap for Quality Education — SLCS, Madurai & SSUN.</td><td>03–04 Nov 2023</td><td>Issued (Hardcopy)</td></tr>
+            <tr><td>3</td><td>National Seminar on Indian Knowledge Systems (NSIKS) — Arasu Group of Institutions & SSUN.</td><td>02–03 Oct 2024</td><td>Issued (Soft copy)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-book"></i> Published Articles</h2>
+      <div class="filters">
+        <input class="input" id="pubSearch" placeholder="Search journal, title, year…" />
+      </div>
+      <div class="table-wrap">
+        <table id="pubTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Journal</th>
+              <th>Article Title</th>
+              <th>Vol/Issue</th>
+              <th>ISSN/eISSN</th>
+              <th>Type</th>
+              <th>Pages</th>
+              <th>Impact Factor</th>
+              <th>Date</th>
+              <th>DOI/Link</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BOOK CHAPTERS -->
+    <section id="books" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-book-atlas"></i> Published Book Chapters</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Book</th><th>Chapter</th><th>Publisher</th><th>ISBN</th><th>Pages</th><th>Date</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Research in Business Management and Finance (HIMCON 2023)</td>
+              <td>Factors Influencing the Level of Stress and Stress Management Among Professionals of Information Technology in Chennai</td>
+              <td>L Ordine Nuovo Publication</td>
+              <td>939299543-1</td>
+              <td>128–134</td>
+              <td>Dec 2023</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Modern Management Education</td>
+              <td>Stress Levels and Management Strategies Among Information Technology Professionals in Chennai</td>
+              <td>Discovery Publishing House</td>
+              <td>978-93-6224-120-7</td>
+              <td>249–255</td>
+              <td>Jan 2025</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>The Legacy of Bharatya Knowledge System</td>
+              <td>Role of NEP 2020 in Management Education for Achieving Viksit Bharat 2047</td>
+              <td>Royal Book Publishing</td>
+              <td>9789348505767</td>
+              <td>113–123</td>
+              <td>Feb 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- LIBRARY VISITS -->
+    <section id="libraries" class="card reveal">
+      <h2 class="section-title"><i class="fa-solid fa-building-columns"></i> Library Visits</h2>
+      <ol>
+        <li>MS University, Tirunelveli — 27 Dec 2022</li>
+        <li>Bharathiar University, Coimbatore — 05 Jan 2023</li>
+        <li>University of Madras, Chennai — 15 May 2023</li>
+        <li>Anna Centenary Library, Chennai — 16 May 2023</li>
+        <li>Madras Institute of Development Studies (MIDS), Chennai — 19 May 2023</li>
+        <li>Maulana Azad National Institute of Technology (MANIT), Bhopal (MP) — 22 Jul 2024</li>
+      </ol>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card reveal">
+      <h2 class="section-title"><i class="fa-regular fa-paper-plane"></i> Contact</h2>
+      <p>Email: <a href="mailto:smkc.edu@gmail.com">smkc.edu@gmail.com</a></p>
+      <div class="tags" style="margin-top:8px">
+        <a class="pill" target="_blank" href="https://www.researchgate.net/profile/Maheshkumar-s"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
+        <a class="pill" target="_blank" href="https://scholar.google.com/citations?user=jzrBfd4AAAAJ&hl=en"><i class="fa-brands fa-google"></i> Google Scholar</a>
+        <a class="pill" target="_blank" href="https://www.linkedin.com/in/maheshkumar-s-963b3121a/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Maheshkumar S · Built with HTML, CSS & JS</div>
+  </footer>
+
+  <button id="toTop" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script>
+    // ===== Typing effect (simple) =====
+    const typedEl = document.getElementById('typed');
+    const roles = [
+      'PhD Scholar — Rural Industries & Management',
+      'Researcher — Employability • Psychology • Tourism Ed.',
+      'IT HR Experience — Talent & People Operations'
+    ];
+    let ri = 0, ci = 0, del = false;
+    function type() {
+      const word = roles[ri % roles.length];
+      typedEl.textContent = word.slice(0, ci) + (Math.floor(Date.now()/500)%2?'|':'');
+      if(!del) { ci++; if(ci > word.length+10){ del = true; } }
+      else { ci--; if(ci === 0){ del = false; ri++; } }
+      requestAnimationFrame(()=>setTimeout(type, 60));
+    }
+    type();
+
+    // ===== Theme toggle =====
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme) root.setAttribute('data-theme', savedTheme);
+    themeToggle.addEventListener('click', ()=>{
+      const t = root.getAttribute('data-theme') === 'light' ? '' : 'light';
+      if(t) root.setAttribute('data-theme', t); else root.removeAttribute('data-theme');
+      localStorage.setItem('theme', t);
+    });
+
+    // ===== Reveal on scroll =====
+    const observer = new IntersectionObserver((entries)=>{
+      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); }}
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // ===== Back to top =====
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=>{ toTop.style.display = window.scrollY>400?'block':'none'; });
+    toTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+    // ===== Data (Conferences) =====
+    const conferences = [
+      {id:1, date:'13 Mar 2023', type:'International Conference — HIMCON 2023', venue:'Bishop Heber College (Autonomous), Tiruchirappalli', topic:'FACTORS INFLUENCING THE LEVEL OF STRESS AND STRESS MANAGEMENT AMONG PROFESSIONALS OF INFORMATION TECHNOLOGY IN CHENNAI', pub:'Yes — Book with ISBN (Received)'},
+      {id:2, date:'27–28 Mar 2023', type:'National Conference — Management Education in Light of NEP 2020', venue:'Chaudhary Bansi Lal University, Bhiwani + collaborators', topic:'STRESS LEVEL AND STRESS MANAGEMENT ABILITY AMONG THE PROFESSIONALS OF INFORMATION TECHNOLOGY IN CHENNAI', pub:'No — Due to second volume delayed; Yes — IJSRA'},
+      {id:3, date:'13–15 Dec 2023', type:'National Conference — AIAE (NEP 2020 – A Way Ahead)', venue:'Amrita Vishwa Vidyapeetham, Coimbatore', topic:'ROLE OF VOCATIONAL EDUCATION PROGRAMMES IN EMPLOYABILITY OF STUDENTS THROUGH SKILL DEVELOPMENT – A CASE STUDY OF GRI–DU', pub:'No — Waiting; Yes — EPRA IJMR'},
+      {id:4, date:'21–23 Dec 2023', type:'International Conference — IEA 106th', venue:'School of Open Learning, University of Delhi', topic:'ROLE OF NATIONAL EDUCATION POLICY 2020 IN STRENGTHENING THE EMPLOYABILITY SKILLS OF STUDENTS AT THE HIGHER EDUCATION LEVEL', pub:'No — Waiting'},
+      {id:5, date:'14–15 Mar 2024', type:'State Level Seminar', venue:'Dept. of Rural Development & CSSEIP', topic:'INCLUSIVE AND EXCLUSIVE DEVELOPMENT OF MANAGEMENT EDUCATION FOR UG AND PG GRADUATES IN INDIA (BHARAT)', pub:'No — Paper ready'},
+      {id:6, date:'18 Mar 2024', type:'National Seminar — Management Education in Light of NEP 2020', venue:'Dept. of Rural Industries & Management and SSUN', topic:'UNVEILING THE EMPLOYABILITY TAPESTRY… IN TAMIL NADU', pub:'No | Yes — Book with ISBN (Care list) (Received)'},
+      {id:7, date:'30 Mar 2024', type:'National Conference — PM Vishwakarma Scheme', venue:'Dept. of Rural Industries & Management, GRI', topic:'EXPLORING INTEREST IN ARTISAN SKILLS AMONG MANAGEMENT GRADUATES IN INDIA (BHARAT)', pub:'No — Paper ready'},
+      {id:8, date:'28 Sep 2024', type:'National Conference — Vivekananda College', venue:'Vivekananda College', topic:'THIRUKKURAL AND ITS RELEVANCE IN MODERN MANAGEMENT EDUCATION', pub:'Yes — GVN College Journal'},
+      {id:9, date:'25–27 Oct 2024', type:'International Conference — IIMS (Royal University of Law & Economics, Cambodia)', venue:'Phnom Penh', topic:'ROLE OF NPAI IN ACHIEVING SKILL DEVELOPMENT IN INDIA', pub:'No — Abstract published; full paper sent'},
+      {id:10, date:'21–23 Nov 2024', type:'National Conclave — Gyan Kumbh', venue:'SSUN + Govt. of Puducherry & Pondicherry University', topic:'ROLE OF NEP 2020 IN MANAGEMENT EDUCATION FOR ACHIEVING VIKSIT BHARAT 2047', pub:'Yes — Book with ISBN (Received)'},
+      {id:11, date:'15 Dec 2024', type:'National Conference — AET Regional Economic Growth', venue:'GTN College, Dindigul', topic:'TOURISM TREASURES AND ECONOMIC TIDES: A REGIONAL STUDY OF DINDIGUL DISTRICT', pub:'No — Waiting'},
+      {id:12, date:'21–23 Dec 2024', type:'National Conference — IEA 107th', venue:'Maharishi Markandeshwar (Deemed University), Mullana, Ambala', topic:'A STUDY ON DIGITAL LITERACY AND SKILL DEVELOPMENT IN INDIA', pub:'No — Waiting; Yes — Mukt Shabd (UGC Care)'},
+      {id:13, date:'22–23 Mar 2025', type:'International Conference — Sustainable Management Practices', venue:'Dept. of Rural Industries & Management, GRI–DU', topic:'AN EVOLUTIONARY STUDY OF PROFESSORS OF PRACTICE AND INDIAN MANAGEMENT EDUCATION', pub:'No — Waiting in another journal; Yes — IJFMR'},
+      {id:14, date:'26 Mar 2025', type:'National Conference — AI for Start-ups in India', venue:'Dept. of Rural Industries & Management, GRI–DU', topic:'AI DRIVEN FUTURE: UNLEASHING INDIA SKILL DEVELOPMENT THROUGH NPAI', pub:'No — Waiting in another journal'},
+      {id:15, date:'27–28 Mar 2025', type:'International Conference — SDGs in India (UGC & NCUI)', venue:'Dept. of Economics, GRI–DU', topic:'Designing Courses for Management Programmes in Accordance with NEP 2020 — A SWOT Analysis', pub:'No — Waiting in another journal'},
+      {id:16, date:'30 Jun 2025', type:'National Conference — IIPA Southern Regional Conference 2025', venue:'IIPA Puducherry + Dept. of Management Studies, Pondicherry University', topic:'EMPOWERING THE ADMINISTRATORS OF LOCAL BODIES IN TAMIL NADU THROUGH THE DIGITAL INDIA SCHEME', pub:'No — Waiting'}
+    ];
+
+    // ===== Data (Workshops) =====
+    const workshops = [
+      {id:1, title:'Seven-day Virtual National Level FDP on Research Methodology — Dept. of Commerce, PPG College of Arts & Science, Coimbatore', date:'12–19 Dec 2022', mode:'Online', cert:'Issued (Soft copy)'},
+      {id:2, title:'Two Days Online National Workshop — Data Analysis using AMOS, PLS-SEM & E-Views (ICSSR-SRC, Alagappa University)', date:'19–20 Dec 2022', mode:'Online', cert:'Issued (Soft copy)'},
+      {id:3, title:'Accelerate Your Research using Elsevier’s ScienceDirect & Scopus (CUSAT)', date:'20 Dec 2022', mode:'Online', cert:'Issued (Soft copy)'},
+      {id:4, title:'Advanced Econometrics and its Applications (GIPE & TIES)', date:'03–14 Feb 2023', mode:'Offline', cert:'Issued (Hardcopy)'},
+      {id:5, title:'Advanced SPSS Program — Dept. of Applied Research, GRI–DU', date:'20–21 Apr 2023', mode:'Offline', cert:'Not Issued'},
+      {id:6, title:'Hands-on Training on Checking Plagiarism — Dr. G. Ramachandran Library, GRI–DU', date:'14–15 Jun 2023', mode:'Offline', cert:'Issued (Soft copy)'},
+      {id:7, title:'Workshop on Open Software Tools for Research Writing — GRI–DU', date:'22 Jun 2023', mode:'Offline', cert:'Issued (Soft copy)'},
+      {id:8, title:'Training Program (Online) — Quiz on Research Methodology — Dept. of Economics, Thiruvalluvar University', date:'14 Jul 2023', mode:'Online', cert:'Issued (Soft copy)'},
+      {id:9, title:'Three Days National Online Workshop on Research Methodology — HI Learn Edutech Institute', date:'28–30 Nov 2023', mode:'Online', cert:'Issued (Soft copy)'},
+      {id:10, title:'Modern e-Tools & Advanced Techniques for Drafting Research & Review Articles — Sri Sarada College for Women', date:'01 Dec 2023', mode:'Offline', cert:'Issued (Soft copy)'},
+      {id:11, title:'Free Online Tools & AI Tools for Easy and Effective Research — Joint NSS Colleges', date:'21 May 2024', mode:'Online', cert:'Issued (Soft copy)'},
+      {id:12, title:'ICSSR Sponsored Research Methodology Course (RMC) — Dept. of Architecture & Planning, MANIT, Bhopal', date:'13–22 Jul 2024', mode:'Offline', cert:'Issued (Hardcopy)'},
+      {id:13, title:'Online National Workshop on Best Research Practices in Global Context — Central Library & R&D Cell', date:'14 Oct 2024', mode:'Online', cert:'Issued (Soft copy)'}
+    ];
+
+    // ===== Data (Publications) =====
+    const publications = [
+      {id:1, journal:'World Journal of Advanced Research and Reviews (WJARR)', title:'Harmonizing Indigenous Knowledge Systems to the Indian Educational Philosophies for Quality Education – A Review Study', issue:'Vol.21, Issue 3', issn:'2581-9615', type:'International Peer Review', pages:'2177–2185', impact:'7.8', date:'Mar 2024', doi:'http://dx.doi.org/10.30574/wjarr.2024.21.3.0940'},
+      {id:2, journal:'International Journal of Science and Research Archive (IJSRA)', title:'Stress Level and Stress Management Ability Among the Professionals of Information Technology in Chennai', issue:'Vol.12, Issue 1', issn:'2582-8185', type:'International Peer Review', pages:'795–799', impact:'8.2', date:'May 2024', doi:'https://doi.org/10.30574/ijsra.2024.12.1.0887'},
+      {id:3, journal:'Education and Society', title:'Unveiling the Employability Tapestry: Charting New Horizons for Academic Graduates of Vibrant Level in Tamil Nadu', issue:'Vol.48, Issue 2 No.1', issn:'2278-6864', type:'UGC Care & Peer Reviewed', pages:'22–30', impact:'—', date:'07 Jul 2024', doi:'Print only'},
+      {id:4, journal:'Journal of Inventive and Scientific Research Studies', title:'Tourism Companies and Educational Institutions in Promoting SDG 4 in Tamil Nadu', issue:'Vol.2, Issue 2', issn:'2584-0630', type:'Double‑blind Peer Reviewed', pages:'295–305', impact:'—', date:'15 Dec 2024', doi:'https://www.jisrs.com/Volume-2-Issue-2/Papers/27.pdf'},
+      {id:5, journal:'EPRA International Journal of Multidisciplinary Research (IJMR)', title:'Role of Vocational Education Programmes in Employability of Students Through Skill Development — A Case Study of GRI–DU', issue:'Vol.11, Issue 2', issn:'2455-3662', type:'Peer Review', pages:'443–450', impact:'8.691', date:'24 Feb 2025', doi:'https://doi.org/10.36713/epra20291'},
+      {id:6, journal:'Empirical Economics Letters (ABDC), 24 (Special Issue 2)', title:'Bridging the Digital Divide: A Comparative Assessment of Online and Offline Buying Behavior', issue:'Vol.24, Issue 2', issn:'1681-8997', type:'ABDC Journal', pages:'11–17', impact:'1.21', date:'Jun 2025', doi:'https://doi.org/10.5281/zenodo.15589520'},
+      {id:7, journal:'Mukt Shabd Journal', title:'A Study on Digital Literacy and Skill Development in India', issue:'Vol.14, Issue 8', issn:'2347-3150', type:'UGC Care', pages:'323–342', impact:'4.6', date:'30 Aug 2025', doi:'10.0014.MSJ.2025.V14I8.0086781.264728'},
+      {id:8, journal:'International Journal for Multidisciplinary Research (IJFMR)', title:'An Evolutionary Study of Professors of Practice and Indian Management Education', issue:'Vol.7, Issue 5', issn:'2582-2160', type:'Peer Review', pages:'1–11', impact:'9.24', date:'05 Sep 2025', doi:'https://doi.org/10.36948/ijfmr.2025.v07i05.55309'}
+    ];
+
+    // ===== Render helper =====
+    function renderTable(data, tbody, row) {
+      tbody.innerHTML = data.map(row).join('');
+    }
+
+    // Render Conferences
+    const confBody = document.querySelector('#confTable tbody');
+    renderTable(conferences, confBody, (c)=>`
+      <tr>
+        <td>${c.id}</td>
+        <td>${c.date}</td>
+        <td>${c.type}</td>
+        <td>${c.venue}</td>
+        <td>${c.topic}</td>
+        <td>${c.pub}</td>
+      </tr>`);
+
+    // Filter conferences
+    const confSearch = document.getElementById('confSearch');
+    confSearch.addEventListener('input', ()=>{
+      const q = confSearch.value.toLowerCase();
+      const filtered = conferences.filter(c=>Object.values(c).join(' ').toLowerCase().includes(q));
+      renderTable(filtered, confBody, (c)=>`
+        <tr>
+          <td>${c.id}</td>
+          <td>${c.date}</td>
+          <td>${c.type}</td>
+          <td>${c.venue}</td>
+          <td>${c.topic}</td>
+          <td>${c.pub}</td>
+        </tr>`);
+    });
+
+    // Render Workshops
+    const wsBody = document.querySelector('#workshopTable tbody');
+    renderTable(workshops, wsBody, (w)=>`
+      <tr>
+        <td>${w.id}</td>
+        <td>${w.title}</td>
+        <td>${w.date}</td>
+        <td>${w.mode}</td>
+        <td>${w.cert}</td>
+      </tr>`);
+
+    // Filter Workshops
+    const wsSearch = document.getElementById('workshopSearch');
+    wsSearch.addEventListener('input', ()=>{
+      const q = wsSearch.value.toLowerCase();
+      const filtered = workshops.filter(w=>Object.values(w).join(' ').toLowerCase().includes(q));
+      renderTable(filtered, wsBody, (w)=>`
+        <tr>
+          <td>${w.id}</td>
+          <td>${w.title}</td>
+          <td>${w.date}</td>
+          <td>${w.mode}</td>
+          <td>${w.cert}</td>
+        </tr>`);
+    });
+
+    // Render Publications
+    const pubBody = document.querySelector('#pubTable tbody');
+    renderTable(publications, pubBody, (p)=>`
+      <tr>
+        <td>${p.id}</td>
+        <td>${p.journal}</td>
+        <td>${p.title}</td>
+        <td>${p.issue}</td>
+        <td>${p.issn}</td>
+        <td>${p.type}</td>
+        <td>${p.pages}</td>
+        <td>${p.impact}</td>
+        <td>${p.date}</td>
+        <td>${p.doi && p.doi.startsWith('http') ? `<a target="_blank" href="${p.doi}">Link</a>` : p.doi}</td>
+      </tr>`);
+
+    // Filter Publications
+    const pubSearch = document.getElementById('pubSearch');
+    pubSearch.addEventListener('input', ()=>{
+      const q = pubSearch.value.toLowerCase();
+      const filtered = publications.filter(p=>Object.values(p).join(' ').toLowerCase().includes(q));
+      renderTable(filtered, pubBody, (p)=>`
+        <tr>
+          <td>${p.id}</td>
+          <td>${p.journal}</td>
+          <td>${p.title}</td>
+          <td>${p.issue}</td>
+          <td>${p.issn}</td>
+          <td>${p.type}</td>
+          <td>${p.pages}</td>
+          <td>${p.impact}</td>
+          <td>${p.date}</td>
+          <td>${p.doi && p.doi.startsWith('http') ? `<a target="_blank" href="${p.doi}">Link</a>` : p.doi}</td>
+        </tr>`);
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ===== Particle background script ===== */
+    const canvas = document.getElementById('particle-bg');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [], mouse = {x:null,y:null};
+    function resizeCanvas(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+    function initParticles(){
+      particles = [];
+      const count = Math.round((W*H)/90000);
+      for(let i=0;i<count;i++){ particles.push({x:Math.random()*W, y:Math.random()*H, r:Math.random()*2+0.6, dx:(Math.random()-0.5)*0.6, dy:(Math.random()-0.5)*0.6}); }
+    }
+    initParticles();
+
+    canvas.addEventListener('mousemove', (e)=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
+    canvas.addEventListener('mouseleave', ()=>{ mouse.x=null; mouse.y=null; });
+
+    function drawParticles(){
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      particles.forEach(p=>{
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+        // interactive repel
+        if(mouse.x && mouse.y){ const dx = p.x-mouse.x, dy = p.y-mouse.y, dist=Math.sqrt(dx*dx+dy*dy); if(dist<120){ p.x += dx/dist*2; p.y += dy/dist*2; } }
+        p.x += p.dx; p.y += p.dy;
+        if(p.x<0||p.x>W) p.dx*=-1; if(p.y<0||p.y>H) p.dy*=-1;
+      });
+      // connect lines
+      for(let i=0;i<particles.length;i++){
+        for(let j=i+1;j<particles.length;j++){
+          const a=particles[i], b=particles[j]; const dx=a.x-b.x, dy=a.y-b.y; const dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<120){ ctx.strokeStyle = 'rgba(255,255,255,'+(0.12 - (dist/120)*0.1)+')'; ctx.lineWidth=0.7; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+  </script>
+</body>
+</html>
