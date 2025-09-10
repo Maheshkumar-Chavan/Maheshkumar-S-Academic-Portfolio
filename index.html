@@ -139,25 +139,42 @@
 
     /* Responsive tweaks for long tables */
     @media (max-width:700px){ table{min-width:600px} }
-    @media (max-width: 900px) 
-    {
+    /* Hide menu toggle on desktop */
+.menu-toggle {
+  display: none;
+  font-size: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+/* Mobile view */
+@media (max-width: 900px) {
   .nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 12px 0;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: block; /* show only in mobile */
   }
 
   .nav .links {
-    display: flex;
-    flex-wrap: wrap;
+    display: none; /* hidden by default */
+    flex-direction: column;
     gap: 8px;
-    flex-direction: column; /* stack items vertically */
     width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav .links.show {
+    display: flex; /* show when toggle clicked */
   }
 
   .nav .links a {
-    padding: 8px 0;
+    padding: 10px 0;
     font-size: 16px;
     border-bottom: 1px solid var(--border);
     width: 100%;
@@ -165,10 +182,6 @@
 
   .nav .links a:last-child {
     border-bottom: none;
-  }
-
-  .theme-toggle {
-    align-self: flex-end;
   }
 }
   </style>
@@ -539,15 +552,17 @@
   <button id="toTop" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script>
-    const menuToggle = document.getElementById("menuToggle");
-  const navLinks = document.getElementById("navLinks");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
+if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("show");
     menuToggle.innerHTML = navLinks.classList.contains("show")
-      ? '<i class="fa-solid fa-xmark"></i>'  // show X when open
-      : '<i class="fa-solid fa-bars"></i>';  // show ☰ when closed
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
   });
+}
     // ===== Typing effect (simple) =====
     const typedEl = document.getElementById('typed');
     const roles = [
