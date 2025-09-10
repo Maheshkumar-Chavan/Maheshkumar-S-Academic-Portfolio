@@ -151,33 +151,53 @@
 }
 
 /* Mobile view */
-@media (max-width: 900px) {
-  .nav {
-    flex-wrap: wrap;
-    align-items: center;
-  }
+/* Base nav */
+.nav .links {
+  display: flex;
+  gap: 16px;
+}
 
+/* Mobile dropdown */
+@media (max-width: 900px) {
   .menu-toggle {
-    display: block; /* show only in mobile */
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  .nav {
+    position: relative;
   }
 
   .nav .links {
     display: none; /* hidden by default */
     flex-direction: column;
-    gap: 8px;
+    background: var(--bg, #fff); /* navbar background */
+    position: absolute;
+    top: 100%; /* appear below header */
+    left: 0;
     width: 100%;
-    margin-top: 10px;
+    padding: 12px 0;
+    border-top: 1px solid var(--border, #ccc);
+
+    /* animation */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
   }
 
   .nav .links.show {
-    display: flex; /* show when toggle clicked */
+    display: flex;
+    max-height: 500px; /* enough space for all items */
   }
 
   .nav .links a {
-    padding: 10px 0;
+    padding: 12px 16px;
     font-size: 16px;
-    border-bottom: 1px solid var(--border);
-    width: 100%;
+    border-bottom: 1px solid var(--border, #ccc);
   }
 
   .nav .links a:last-child {
