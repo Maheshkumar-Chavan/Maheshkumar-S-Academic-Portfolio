@@ -63,15 +63,8 @@
       border-bottom:1px solid var(--border);
       background:linear-gradient(180deg, rgba(10,15,30,.75), rgba(10,15,30,.40));
     }
-    [data-theme="light"] header{background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));}
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:12px; height:64px}
-    .nav a.brand{font-weight:800; letter-spacing:.4px}
-    .nav .links{display:flex; gap:14px; flex-wrap:wrap}
-    .nav .links a{font-weight:600; color:var(--muted)}
-    .nav .links a:hover{color:var(--text)}
-    .theme-toggle{border:1px solid var(--border); padding:8px 10px; border-radius:999px; cursor:pointer; background:var(--card)}
-
-    header {
+    /*[data-theme="light"] header{background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));}*/
+      header {
   position: sticky;
   top: 0;
   z-index: 50;
@@ -79,6 +72,12 @@
   border-bottom: 1px solid var(--border);
   background: var(--bg); /* use background color instead of gradient */
 }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:12px; height:64px}
+    .nav a.brand{font-weight:800; letter-spacing:.4px}
+    .nav .links{display:flex; gap:14px; flex-wrap:wrap}
+    .nav .links a{font-weight:600; color:var(--muted)}
+    .nav .links a:hover{color:var(--text)}
+    .theme-toggle{border:1px solid var(--border); padding:8px 10px; border-radius:999px; cursor:pointer; background:var(--card)}
 
     /* Hero */
     .hero{display:grid; grid-template-columns:1.3fr .7fr; gap:28px; align-items:center; padding:64px 0}
