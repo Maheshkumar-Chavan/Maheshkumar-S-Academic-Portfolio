@@ -71,6 +71,15 @@
     .nav .links a:hover{color:var(--text)}
     .theme-toggle{border:1px solid var(--border); padding:8px 10px; border-radius:999px; cursor:pointer; background:var(--card)}
 
+    header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px) saturate(120%);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg); /* use background color instead of gradient */
+}
+
     /* Hero */
     .hero{display:grid; grid-template-columns:1.3fr .7fr; gap:28px; align-items:center; padding:64px 0}
     .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
