@@ -167,7 +167,7 @@
     cursor: pointer;
     z-index: 1001;
   }
-  
+
   .nav {
     position: relative;
   }
@@ -554,7 +554,7 @@
   <button id="toTop" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script>
-const menuToggle = document.getElementById("menuToggle");
+    const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
@@ -563,6 +563,13 @@ if (menuToggle && navLinks) {
     menuToggle.innerHTML = navLinks.classList.contains("show")
       ? '<i class="fa-solid fa-xmark"></i>'
       : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("show");
+      menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
   });
 }
     // ===== Typing effect (simple) =====
