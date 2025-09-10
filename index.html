@@ -195,7 +195,7 @@
       <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
     </div>
   </header>*/
-  
+
   <header>
   <div class="container nav">
     <a class="brand" href="#home">Maheshkumar&nbsp;S</a>
@@ -539,6 +539,15 @@
   <button id="toTop" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script>
+    const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+    menuToggle.innerHTML = navLinks.classList.contains("show")
+      ? '<i class="fa-solid fa-xmark"></i>'  // show X when open
+      : '<i class="fa-solid fa-bars"></i>';  // show ☰ when closed
+  });
     // ===== Typing effect (simple) =====
     const typedEl = document.getElementById('typed');
     const roles = [
