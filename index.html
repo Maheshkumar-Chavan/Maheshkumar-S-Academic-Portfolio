@@ -98,23 +98,16 @@
     .profile-img img{width:100%; height:100%; object-fit:cover; display:block}
     .profile-img:hover{box-shadow:0 10px 50px rgba(155,140,255,.18); transform:translateY(-6px)}
 
- /* Make the canvas cover the full page */
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* optional: remove scrollbars */
-    background: #000; /* fallback background */
-  }
-
+    /* Make canvas cover the entire screen */
   #particle-bg {
-    position: fixed;
+    position: fixed;   /* stays in place even when scrolling */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* keep it behind other elements */}
-      
+    z-index: -1;       /* put it behind other elements */
+  }
+  
     /* Sections */
     section{padding:28px; margin:22px 0}
     section .section-title{font-size:22px; margin:0 0 14px; display:flex; align-items:center; gap:10px}
