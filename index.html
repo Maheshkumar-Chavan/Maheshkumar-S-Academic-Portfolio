@@ -49,7 +49,7 @@
     body{ 
       font-family: 'Source Sans Pro', sans-serif;
       color:var(--text); 
-    }
+  }
 
 h1,h2,h3,.title,.section-title{
   font-family:'Playfair Display', serif;
@@ -89,7 +89,24 @@ h1,h2,h3,.title,.section-title{
     .nav .links{display:flex; gap:14px; flex-wrap:wrap}
     .nav .links a{font-weight:600; color:var(--muted)}
     .nav .links a:hover{color:var(--text)}
-    .theme-toggle{border:1px solid var(--border); padding:8px 10px; border-radius:999px; cursor:pointer; background:var(--card)}
+/* Theme Toggle Button Styling */
+
+/* Default: Light mode → black */
+.theme-toggle {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: black;   /* Black in light mode */
+  color: white;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dark mode → white */
+html:not([data-theme="light"]) .theme-toggle {
+  background: rgb(136, 199, 247);
+  color: black;
+}
 
     /* Hero */
     .hero{display:grid; grid-template-columns:1.3fr .7fr; gap:28px; align-items:center; padding:64px 0}
@@ -154,7 +171,28 @@ h1,h2,h3,.title,.section-title{
     .reveal.in{opacity:1; transform:none}
 
     /* Back to top */
-    #toTop{position:fixed; right:18px; bottom:18px; display:none; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:var(--card)}
+/* Back to Top Button Styling */
+
+/* Default: Light mode → black */
+#toTop {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: black;   /* Black in light mode */
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dark mode → white */
+html:not([data-theme="light"]) #toTop {
+  background: rgb(136, 199, 247);
+  color: black;
+}
 
     /* Tag list */
     .tags{display:flex; gap:8px; flex-wrap:wrap}
