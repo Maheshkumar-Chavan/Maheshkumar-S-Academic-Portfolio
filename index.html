@@ -780,7 +780,7 @@ if (menuToggle && navLinks) {
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* ===== Particle background script ===== */
+     /* ===== Particle background script ===== */
        const canvas = document.getElementById('particle-bg');
     const ctx = canvas.getContext('2d');
     let W, H, particles = [], mouse = {x:null,y:null};
@@ -789,8 +789,18 @@ if (menuToggle && navLinks) {
 
     function initParticles(){
       particles = [];
-      const count = Math.round((W*H)/2800);
-      for(let i=0;i<count;i++){ particles.push({x:Math.random()*W, y:Math.random()*H, r:Math.random()*2+0.6, dx:(Math.random()-0.5)*0.6, dy:(Math.random()-0.5)*0.6}); }
+ const mmToPx = 3.78; // 1mm ≈ 3.78px
+const radius = 0.2 * mmToPx;
+      const count = Math.round((W*H)/5000);
+      for(let i=0;i<count;i++){  
+         particles.push({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    r: radius, // 0.5mm radius
+    dx: (Math.random() - 0.5) * 0.2,
+    dy: (Math.random() - 0.5) * 0.6
+  });
+       }
     }
     initParticles();
 
