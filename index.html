@@ -333,6 +333,29 @@ html:not([data-theme="light"]) #toTop {
     ResearchGate: <strong>14</strong> citations · H-index: <strong>2</strong>
   </span>
 </div>
+<style>
+  .citation-metrics .pill {
+    position: relative;
+    font-size: 12px;
+    color: var(--text);
+    background: linear-gradient(
+      145deg,
+      rgba(110,231,255,0.12),
+      rgba(155,140,255,0.10)
+    );
+    box-shadow:
+      0 0 10px rgba(110,231,255,0.25),
+      0 0 20px rgba(155,140,255,0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .citation-metrics .pill:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 14px rgba(110,231,255,0.45),
+      0 0 30px rgba(155,140,255,0.30);
+  }
+</style>
         <div class="tags">
           <a class="pill" href="mailto:smkc.edu@gmail.com"><i class="fa-solid fa-envelope"></i> smkc.edu@gmail.com</a>
           <a class="pill" target="_blank" href="https://www.linkedin.com/in/maheshkumar-s-963b3121a/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
