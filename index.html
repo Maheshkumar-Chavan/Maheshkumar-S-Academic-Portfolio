@@ -286,19 +286,35 @@ html:not([data-theme="light"]) #toTop {
 html[data-theme="light"] .nav .links a:hover {
   box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
 }
-/* ===== Desktop navbar: force single line ===== */
+
+/* ===== Desktop navbar layout fix ===== */
 @media (min-width: 901px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
   .nav .links {
-    flex-wrap: nowrap;          /* prevent wrapping */
-    white-space: nowrap;        /* force single line */
-    overflow: hidden;           /* avoid layout shift */
+    flex: 1;                    /* take available middle space */
+    display: flex;
+    justify-content: center;    /* center menu between brand & toggle */
+    flex-wrap: nowrap;          /* single line only */
+    white-space: nowrap;
+    overflow: visible;
+    gap: 14px;                  /* tighter spacing so all fit */
   }
 
   .nav .links a {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 6px 10px;          /* consistent spacing */
+    letter-spacing: 0.4px;
+    padding: 6px 8px;
+    font-size: 14px;            /* slight reduction to fit all */
+  }
+
+  .theme-toggle {
+    flex-shrink: 0;             /* never overlap menu */
   }
 }
 
