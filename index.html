@@ -286,6 +286,22 @@ html:not([data-theme="light"]) #toTop {
 html[data-theme="light"] .nav .links a:hover {
   box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
 }
+/* ===== Desktop navbar: force single line ===== */
+@media (min-width: 901px) {
+  .nav .links {
+    flex-wrap: nowrap;          /* prevent wrapping */
+    white-space: nowrap;        /* force single line */
+    overflow: hidden;           /* avoid layout shift */
+  }
+
+  .nav .links a {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 6px 10px;          /* consistent spacing */
+  }
+}
+
 
 /* Brand name in navbar */
 .nav a.brand {
