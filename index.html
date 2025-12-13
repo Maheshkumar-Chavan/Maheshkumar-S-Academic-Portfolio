@@ -317,6 +317,34 @@ html[data-theme="light"] .nav .links a:hover {
     flex-shrink: 0;             /* never overlap menu */
   }
 }
+/* ===== Perfect center alignment for desktop navbar ===== */
+@media (min-width: 901px) {
+  .nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  .nav .links {
+    justify-self: center;       /* true visual center */
+    display: flex;
+    gap: 16px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .nav .links a {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  .theme-toggle {
+    justify-self: end;
+  }
+}
 
 
 /* Brand name in navbar */
