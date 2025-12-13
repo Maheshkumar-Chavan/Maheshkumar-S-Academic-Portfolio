@@ -348,13 +348,24 @@ html:not([data-theme="light"]) #toTop {
       0 0 20px rgba(155,140,255,0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  /* Apply hover effect to all links */
+/* All links hover effect */
 a:hover {
   transform: translateY(-2px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Dark theme glow (current) */
+html:not([data-theme="light"]) a:hover {
   box-shadow:
     0 0 14px rgba(110,231,255,0.45),
     0 0 30px rgba(155,140,255,0.30);
-  transition: transform 0.25s ease, box-shadow 0.25s ease; /* smooth transition */
+}
+
+/* Light theme glow (make it visible on white) */
+html[data-theme="light"] a:hover {
+  box-shadow:
+    0 0 14px rgba(0,0,0,0.45),
+    0 0 30px rgba(0,0,0,0.30);
 }
 </style>
 <style>
