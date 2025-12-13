@@ -348,14 +348,33 @@ html:not([data-theme="light"]) #toTop {
       0 0 20px rgba(155,140,255,0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-
-  .citation-metrics .pill:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 0 14px rgba(110,231,255,0.45),
-      0 0 30px rgba(155,140,255,0.30);
-  }
+  /* Apply hover effect to all links */
+a:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 14px rgba(110,231,255,0.45),
+    0 0 30px rgba(155,140,255,0.30);
+  transition: transform 0.25s ease, box-shadow 0.25s ease; /* smooth transition */
+}
 </style>
+<style>
+/* Your existing styles... */
+
+.typed-wrap {
+  display: inline-block;
+  white-space: nowrap;   /* Prevent wrapping */
+  overflow: hidden;      /* Hide overflow */
+  position: relative;
+}
+
+#typed {
+  display: inline-block;
+  transition: opacity 0.4s ease-in-out;  /* Smooth fade */
+  opacity: 1;
+}
+/* Rest of your CSS... */
+</style>
+
         <div class="tags">
           <a class="pill" href="mailto:smkc.edu@gmail.com"><i class="fa-solid fa-envelope"></i> smkc.edu@gmail.com</a>
           <a class="pill" target="_blank" href="https://www.linkedin.com/in/maheshkumar-s-963b3121a/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -683,8 +702,8 @@ if (menuToggle && navLinks) {
     // ===== Typing effect (simple) =====
     const typedEl = document.getElementById('typed');
     const roles = [
+      'PhD Viva Voce on 17.12.2025',  
       'JRF — PhD Research Scholar',
-      'PhD Viva Voce on 17.12.2025',
       'Research — Employability • Students Psychology • Tourism Management Ed.',
       'IT HR Experience — Talent & People Operations'
     ];
@@ -918,5 +937,106 @@ const radius = 0.2 * mmToPx;
     drawParticles();
 
   </script>
+  <script>
+// Your existing JS (menu toggle, theme toggle, etc.)
+
+const typedEl = document.getElementById('typed');
+const wrapEl = document.querySelector('.typed-wrap');
+
+const roles = [
+  'JRF — PhD Research Scholar',
+  'PhD Viva Voce on 17.12.2025',
+  'Research — Employability • Students Psychology • Tourism Management Ed.',
+  'IT HR Experience — Talent & People Operations'
+];
+
+// Set container width to longest text to prevent shaking
+const testSpan = document.createElement('span');
+testSpan.style.visibility = 'hidden';
+testSpan.style.position = 'absolute';
+testSpan.style.whiteSpace = 'nowrap';
+document.body.appendChild(testSpan);
+
+let maxWidth = 0;
+roles.forEach(word => {
+  testSpan.textContent = word + '|';
+  const w = testSpan.offsetWidth;
+  if (w > maxWidth) maxWidth = w;
+});
+wrapEl.style.width = maxWidth + 'px';
+document.body.removeChild(testSpan);
+
+// Typing effect with fade
+let ri = 0, ci = 0, del = false;
+function type() {
+  const word = roles[ri % roles.length];
+  
+  typedEl.style.opacity = 0; // fade out
+  setTimeout(() => {
+    typedEl.textContent = word.slice(0, ci) + '|';
+    typedEl.style.opacity = 1; // fade in
+  }, 200);
+
+  if (!del) {
+    ci++;
+    if (ci > word.length + 10) del = true;
+  } else {
+    ci--;
+    if (ci === 0) {
+      del = false;
+      ri++;
+    }
+  }
+  setTimeout(type, 120);
+}
+
+type();
+// Your existing JS (menu toggle, theme toggle, etc.)
+
+const typedEl = document.getElementById('typed');
+const wrapEl = document.querySelector('.typed-wrap');
+
+// Set container width to longest text to prevent shaking
+const testSpan = document.createElement('span');
+testSpan.style.visibility = 'hidden';
+testSpan.style.position = 'absolute';
+testSpan.style.whiteSpace = 'nowrap';
+document.body.appendChild(testSpan);
+
+let maxWidth = 0;
+roles.forEach(word => {
+  testSpan.textContent = word + '|';
+  const w = testSpan.offsetWidth;
+  if (w > maxWidth) maxWidth = w;
+});
+wrapEl.style.width = maxWidth + 'px';
+document.body.removeChild(testSpan);
+
+// Typing effect with fade
+let ri = 0, ci = 0, del = false;
+function type() {
+  const word = roles[ri % roles.length];
+  
+  typedEl.style.opacity = 0; // fade out
+  setTimeout(() => {
+    typedEl.textContent = word.slice(0, ci) + '|';
+    typedEl.style.opacity = 1; // fade in
+  }, 200);
+
+  if (!del) {
+    ci++;
+    if (ci > word.length + 10) del = true;
+  } else {
+    ci--;
+    if (ci === 0) {
+      del = false;
+      ri++;
+    }
+  }
+  setTimeout(type, 120);
+}
+
+type();
+</script>
 </body>
 </html>
