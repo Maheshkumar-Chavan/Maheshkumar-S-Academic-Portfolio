@@ -266,6 +266,49 @@ html:not([data-theme="light"]) #toTop {
     border-bottom: none;
   }
 }
+/* Navbar menu font style */
+.nav .links a {
+  font-family: 'Playfair Display', serif; /* Classic serif font */
+  font-weight: 600;                        /* Slightly bold for clarity */
+  letter-spacing: 0.5px;                   /* Small spacing for elegance */
+  color: var(--muted);
+  transition: color 0.3s, transform 0.25s, box-shadow 0.25s;
+}
+
+/* Hover effect consistent with your glowing theme */
+.nav .links a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px rgba(110,231,255,0.45), 0 0 30px rgba(155,140,255,0.30);
+}
+
+/* Light theme adjustment for hover glow */
+html[data-theme="light"] .nav .links a:hover {
+  box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
+}
+
+/* Brand name in navbar */
+.nav a.brand {
+  font-family: 'Playfair Display', serif;  /* Same classic font */
+  font-weight: 700;                         /* Bold for prominence */
+  letter-spacing: 0.5px;                    /* Elegant spacing */
+  font-size: 1rem;                        /* Adjust size to your taste */
+  color: var(--text);
+  transition: color 0.3s, transform 0.25s, box-shadow 0.25s;
+}
+
+/* Hover effect for brand name */
+.nav a.brand:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px rgba(110,231,255,0.45), 0 0 30px rgba(155,140,255,0.30);
+}
+
+/* Light theme adjustment for hover glow */
+html[data-theme="light"] .nav a.brand:hover {
+  box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
+}
+
  /* All links hover effect */
 a:hover {
   transform: translateY(-2px);
