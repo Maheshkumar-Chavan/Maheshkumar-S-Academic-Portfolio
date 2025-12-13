@@ -317,7 +317,12 @@ html[data-theme="light"] .nav .links a:hover {
     flex-shrink: 0;             /* never overlap menu */
   }
 }
-/* ===== FORCE PERFECT CENTER NAVBAR (DESKTOP ONLY) ===== */
+/* ===== Full-width navbar while keeping site centered ===== */
+header .nav {
+  max-width: 100%;
+}
+
+/* Desktop navbar layout */
 @media (min-width: 901px) {
   header .nav {
     display: grid !important;
@@ -326,11 +331,11 @@ html[data-theme="light"] .nav .links a:hover {
   }
 
   header .nav .links {
+    justify-self: center;
     display: flex !important;
-    justify-content: center !important;
-    flex-wrap: nowrap !important;
-    white-space: nowrap;
     gap: 16px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
 
   header .nav .links a {
@@ -343,7 +348,7 @@ html[data-theme="light"] .nav .links a:hover {
 
   header .theme-toggle {
     justify-self: end;
-    flex-shrink: 0;
+    margin-left: 16px;
   }
 }
 
