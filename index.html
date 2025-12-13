@@ -265,6 +265,57 @@ html:not([data-theme="light"]) #toTop {
   .nav .links a:last-child {
     border-bottom: none;
   }
+  /* All links hover effect */
+a:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Dark theme glow (current) */
+html:not([data-theme="light"]) a:hover {
+  box-shadow:
+    0 0 14px rgba(110,231,255,0.45),
+    0 0 30px rgba(155,140,255,0.30);
+}
+
+/* Light theme glow (make it visible on white) */
+html[data-theme="light"] a:hover {
+  box-shadow:
+    0 0 14px rgba(0,0,0,0.45),
+    0 0 30px rgba(0,0,0,0.30);
+}
+/* Profile image glow */
+.profile-img:hover {
+  transform: translateY(-6px);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* Dark theme glow (current) */
+html:not([data-theme="light"]) .profile-img:hover {
+  box-shadow: 0 10px 50px rgba(155,140,255,0.18);
+}
+
+/* Light theme glow */
+html[data-theme="light"] .profile-img:hover {
+  box-shadow: 0 10px 50px rgba(0,0,0,0.18);
+}
+</style>
+<style>
+/* Your existing styles... */
+
+.typed-wrap {
+  display: inline-block;
+  white-space: nowrap;   /* Prevent wrapping */
+  overflow: hidden;      /* Hide overflow */
+  position: relative;
+}
+
+#typed {
+  display: inline-block;
+  transition: opacity 0.4s ease-in-out;  /* Smooth fade */
+  opacity: 1;
+}
+/* Rest of your CSS... */
 }
   </style>
 </head>
@@ -348,42 +399,6 @@ html:not([data-theme="light"]) #toTop {
       0 0 20px rgba(155,140,255,0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-/* All links hover effect */
-a:hover {
-  transform: translateY(-2px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Dark theme glow (current) */
-html:not([data-theme="light"]) a:hover {
-  box-shadow:
-    0 0 14px rgba(110,231,255,0.45),
-    0 0 30px rgba(155,140,255,0.30);
-}
-
-/* Light theme glow (make it visible on white) */
-html[data-theme="light"] a:hover {
-  box-shadow:
-    0 0 14px rgba(0,0,0,0.45),
-    0 0 30px rgba(0,0,0,0.30);
-}
-</style>
-<style>
-/* Your existing styles... */
-
-.typed-wrap {
-  display: inline-block;
-  white-space: nowrap;   /* Prevent wrapping */
-  overflow: hidden;      /* Hide overflow */
-  position: relative;
-}
-
-#typed {
-  display: inline-block;
-  transition: opacity 0.4s ease-in-out;  /* Smooth fade */
-  opacity: 1;
-}
-/* Rest of your CSS... */
 </style>
 
         <div class="tags">
