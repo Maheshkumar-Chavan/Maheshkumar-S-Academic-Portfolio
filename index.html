@@ -672,63 +672,61 @@ a {
 
 <style>
 /* ===============================
-   PhD → Research Outcome ECHO
-   (ONE EFFECT · ALL DEVICES · SAFE)
+   PhD Research Callout Bubble
+   (Professional · Stable · Clean)
    =============================== */
 
 .phd-pipe {
   position: relative;
 
-  /* subtle differentiation */
   background:
-    linear-gradient(145deg,
-      rgba(110,231,255,0.18),
-      rgba(155,140,255,0.14)
+    linear-gradient(
+      145deg,
+      rgba(110,231,255,0.12),
+      rgba(155,140,255,0.10)
     );
 
   border: 1px solid var(--border);
+  border-radius: 18px;
 
-  /* visual offset = derived outcome */
+  /* subtle separation from normal cards */
   box-shadow:
-    -6px 0 0 rgba(110,231,255,0.25),
-    inset 0 0 0 1px rgba(255,255,255,0.04),
-    var(--shadow);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    0 10px 28px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
-/* gentle research pulse */
-.phd-pipe {
-  animation: phd-echo 4s ease-in-out infinite;
+/* NOTCH — the key professional touch */
+.phd-pipe::before {
+  content: "";
+  position: absolute;
+
+  /* left side notch (desktop) */
+  left: -12px;
+  top: 40px;
+
+  width: 24px;
+  height: 24px;
+
+  background: inherit;
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+
+  transform: rotate(45deg);
+  border-bottom-left-radius: 4px;
 }
 
-@keyframes phd-echo {
-  0% {
-    box-shadow:
-      -6px 0 0 rgba(110,231,255,0.25),
-      inset 0 0 0 1px rgba(255,255,255,0.04),
-      var(--shadow);
-  }
-  50% {
-    box-shadow:
-      -10px 0 0 rgba(155,140,255,0.35),
-      inset 0 0 0 1px rgba(255,255,255,0.08),
-      0 14px 36px rgba(0,0,0,0.35);
-  }
-  100% {
-    box-shadow:
-      -6px 0 0 rgba(110,231,255,0.25),
-      inset 0 0 0 1px rgba(255,255,255,0.04),
-      var(--shadow);
-  }
-}
+/* Mobile: move notch to top */
+@media (max-width: 900px) {
+  .phd-pipe::before {
+    left: 50%;
+    top: -12px;
 
-/* hover reinforcement (desktop only) */
-@media (hover: hover) {
-  .phd-pipe:hover {
-    transform: translateY(-2px);
+    transform:
+      translateX(-50%)
+      rotate(45deg);
+
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 }
 
