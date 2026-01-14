@@ -672,105 +672,66 @@ a {
 
 <style>
 /* ===============================
-   PhD → Research Outcome PIPELINE
-   (DESKTOP CENTERED, MOBILE FIXED)
+   PhD → Research Outcome ECHO
+   (ONE EFFECT · ALL DEVICES · SAFE)
    =============================== */
 
-.phd-source {
+.phd-pipe {
   position: relative;
-}
 
-.phd-source + .phd-pipe {
-  position: relative;
-  background: linear-gradient(
-    145deg,
-    rgba(110,231,255,0.16),
-    rgba(155,140,255,0.12)
-  );
-  border: 1px solid var(--border);
-}
-
-/* ===== DESKTOP: HORIZONTAL FLOW ===== */
-.phd-source + .phd-pipe::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -36px;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 6px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent),
-    transparent
-  );
-  border-radius: 999px;
-  animation: phd-flow 2.8s linear infinite;
-}
-
-.phd-source + .phd-pipe::after {
-  content: "➤";
-  position: absolute;
-  top: 50%;
-  left: -18px;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: var(--accent);
-  animation: phd-arrow 2.8s ease-in-out infinite;
-}
-
-/* animations */
-@keyframes phd-flow {
-  0% { opacity: .3; }
-  50% { opacity: 1; }
-  100% { opacity: .3; }
-}
-
-@keyframes phd-arrow {
-  0% { transform: translateY(-50%) translateX(0); opacity: .4; }
-  50% { transform: translateY(-50%) translateX(6px); opacity: 1; }
-  100% { transform: translateY(-50%) translateX(0); opacity: .4; }
-}
-
-/* ===== MOBILE / TABLET: VERTICAL FLOW (FIXED) ===== */
-@media (max-width: 900px) {
-
-  /* reset desktop logic */
-  .phd-source + .phd-pipe::before,
-  .phd-source + .phd-pipe::after {
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-    animation: none;
-  }
-
-  /* vertical line */
-  .phd-source + .phd-pipe::before {
-    top: -36px;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-
-    width: 6px;
-    height: 28px;
-
-    background: linear-gradient(
-      180deg,
-      transparent,
-      var(--accent),
-      transparent
+  /* subtle differentiation */
+  background:
+    linear-gradient(145deg,
+      rgba(110,231,255,0.18),
+      rgba(155,140,255,0.14)
     );
-  }
 
-  /* arrow ALWAYS at bottom of line */
-  .phd-source + .phd-pipe::after {
-    top: -10px;                 /* directly below line */
-    left: 50% !important;
-    transform: translateX(-50%) rotate(90deg) !important;
-    font-size: 18px;
-    color: var(--accent);
+  border: 1px solid var(--border);
+
+  /* visual offset = derived outcome */
+  box-shadow:
+    -6px 0 0 rgba(110,231,255,0.25),
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    var(--shadow);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* gentle research pulse */
+.phd-pipe {
+  animation: phd-echo 4s ease-in-out infinite;
+}
+
+@keyframes phd-echo {
+  0% {
+    box-shadow:
+      -6px 0 0 rgba(110,231,255,0.25),
+      inset 0 0 0 1px rgba(255,255,255,0.04),
+      var(--shadow);
+  }
+  50% {
+    box-shadow:
+      -10px 0 0 rgba(155,140,255,0.35),
+      inset 0 0 0 1px rgba(255,255,255,0.08),
+      0 14px 36px rgba(0,0,0,0.35);
+  }
+  100% {
+    box-shadow:
+      -6px 0 0 rgba(110,231,255,0.25),
+      inset 0 0 0 1px rgba(255,255,255,0.04),
+      var(--shadow);
   }
 }
+
+/* hover reinforcement (desktop only) */
+@media (hover: hover) {
+  .phd-pipe:hover {
+    transform: translateY(-2px);
+  }
+}
+
 
   </style>
     <!-- ABOUT -->
