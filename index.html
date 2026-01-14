@@ -673,15 +673,13 @@ a {
 <style>
 /* ===============================
    PhD → Research Outcome PIPELINE
-   (CENTERED DESKTOP + CORRECT MOBILE)
+   (DESKTOP CENTER + MOBILE DOWN)
    =============================== */
 
-/* source box */
 .phd-source {
   position: relative;
 }
 
-/* target box */
 .phd-source + .phd-pipe {
   position: relative;
   background: linear-gradient(
@@ -692,69 +690,72 @@ a {
   border: 1px solid var(--border);
 }
 
-/* ===== DESKTOP PIPE (CENTERED) ===== */
+/* ===== DESKTOP (HORIZONTAL CENTER) ===== */
 .phd-source + .phd-pipe::before {
   content: "";
   position: absolute;
-
-  /* center vertically */
   top: 50%;
-  transform: translateY(-50%);
-
-  /* between grid columns */
   left: -36px;
+  transform: translateY(-50%);
   width: 36px;
   height: 6px;
-
   background: linear-gradient(
     90deg,
     transparent,
     var(--accent),
     transparent
   );
-
   border-radius: 999px;
   animation: phd-flow 2.8s linear infinite;
 }
 
-/* arrow head */
 .phd-source + .phd-pipe::after {
   content: "➤";
   position: absolute;
-
   top: 50%;
-  transform: translateY(-50%);
-
   left: -22px;
+  transform: translateY(-50%);
   font-size: 18px;
   color: var(--accent);
-
   animation: phd-arrow 2.8s ease-in-out infinite;
 }
 
 /* animations */
 @keyframes phd-flow {
-  0%   { background-position: 0% 50%; opacity: .3; }
-  50%  { background-position: 100% 50%; opacity: 1; }
-  100% { background-position: 0% 50%; opacity: .3; }
+  0% { opacity: .3; }
+  50% { opacity: 1; }
+  100% { opacity: .3; }
 }
 
 @keyframes phd-arrow {
-  0%   { transform: translateY(-50%) translateX(0); opacity: .4; }
-  50%  { transform: translateY(-50%) translateX(6px); opacity: 1; }
+  0% { transform: translateY(-50%) translateX(0); opacity: .4; }
+  50% { transform: translateY(-50%) translateX(6px); opacity: 1; }
   100% { transform: translateY(-50%) translateX(0); opacity: .4; }
 }
 
-/* ===== MOBILE / TABLET (TOP-DOWN PIPE) ===== */
+/* ===== MOBILE / TABLET — FORCE DOWN ===== */
 @media (max-width: 900px) {
 
+  /* HARD RESET desktop positioning */
+  .phd-source + .phd-pipe::before,
+  .phd-source + .phd-pipe::after {
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+
+  /* vertical pipe */
   .phd-source + .phd-pipe::before {
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
+    content: "";
+    position: absolute;
+    top: -34px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
 
     width: 6px;
-    height: 30px;
+    height: 34px;
 
     background: linear-gradient(
       180deg,
@@ -764,10 +765,14 @@ a {
     );
   }
 
+  /* downward arrow */
   .phd-source + .phd-pipe::after {
-    top: -46px;
-    left: 50%;
-    transform: translateX(-50%) rotate(90deg);
+    content: "➤";
+    position: absolute;
+    top: -54px;
+    left: 50% !important;
+    transform: translateX(-50%) rotate(90deg) !important;
+    font-size: 18px;
   }
 }
   </style>
