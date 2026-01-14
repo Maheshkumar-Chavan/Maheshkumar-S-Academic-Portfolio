@@ -876,6 +876,45 @@ a {
     gap: 10px;
   }
 }
+/* ===============================
+   EDUCATION — FORCE MATCH PhD
+   (DESKTOP FIX — PhD UNTOUCHED)
+   =============================== */
+
+#education .grid.two > .item:not(.phd-source) {
+  padding: 18px 18px 22px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* Match PhD text rhythm */
+#education .grid.two > .item:not(.phd-source) .kpi {
+  line-height: 1.35;
+}
+
+#education .grid.two > .item:not(.phd-source) .kpi + .kpi {
+  margin-top: -4px;
+}
+
+#education .grid.two > .item:not(.phd-source) .muted {
+  line-height: 1.55;
+}
+
+/* Remove empty placeholders */
+#education .grid.two > .item:not(.phd-source) .muted:empty {
+  display: none;
+}
+
+/* ===============================
+   MOBILE — SAME BEHAVIOR
+   =============================== */
+@media (max-width: 900px) {
+  #education .grid.two > .item:not(.phd-source) {
+    padding: 16px !important;
+    gap: 10px !important;
+  }
+}
 
   /* ===============================
    MOBILE ALIGNMENT FIX — PhD PIPE
