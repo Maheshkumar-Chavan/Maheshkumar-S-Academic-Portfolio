@@ -584,22 +584,7 @@ a.pill {
      <span id="typed"></span>
     </span>
         </p>
-        <style>
 
-    /* ===== Typing Text effect – NO SHAKE FIX ===== */
-.typed-wrap {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  min-height: 1.4em;
-}
-
-#typed {
-  display: inline-block;
-  will-change: contents;
-  transition: opacity 0.25s ease;
-}
-</style>
         <div class="badges">
           <span class="badge">Completed PhD viva voce on 17 December 2025 at the School of Management Studies</span>
           <span class="badge">The Gandhigram Rural Institute – Deemed to be University</span>
@@ -1460,56 +1445,36 @@ const radius = 0.2 * mmToPx;
   }
 
   document.addEventListener("DOMContentLoaded", attachHaptics);
-</script>
-</script>
-<script>
+
 window.addEventListener("load", () => {
   const typedEl = document.getElementById("typed");
   const wrapEl = document.querySelector(".typed-wrap");
-
   if (!typedEl || !wrapEl) return;
 
   const roles = [
     "Recipient of Best Research Scholar Award 2024, GRI–DU.",
     "GRI–JRF | PhD Research Scholar",
-    "Employability • Students Psychology • Tourism Mngt",
+    "Employability • Students Psychology • Tourism Management",
     "IT HR Experience — Talent & People Operations"
   ];
-
-  /* ===== LOCK WIDTH AFTER FONTS LOAD ===== */
-  const probe = document.createElement("span");
-  probe.style.visibility = "hidden";
-  probe.style.whiteSpace = "nowrap";
-  probe.style.position = "absolute";
-  probe.style.fontFamily = getComputedStyle(typedEl).fontFamily;
-  document.body.appendChild(probe);
-
-  let maxWidth = 0;
-  roles.forEach(text => {
-    probe.textContent = text;
-    maxWidth = Math.max(maxWidth, probe.offsetWidth);
-  });
-
-  wrapEl.style.width = (maxWidth + 8) + "px";
-  document.body.removeChild(probe);
 
   let roleIndex = 0;
   let charIndex = 0;
   let deleting = false;
 
-  function typeLoop() {
-    const current = roles[roleIndex];
-
-    typedEl.textContent = current.slice(0, charIndex);
+  function loop() {
+    const text = roles[roleIndex];
 
     if (!deleting) {
+      typedEl.textContent = text.slice(0, charIndex + 1);
       charIndex++;
-      if (charIndex > current.length) {
+      if (charIndex === text.length) {
         deleting = true;
-        setTimeout(typeLoop, 1200);
+        setTimeout(loop, 1400);
         return;
       }
     } else {
+      typedEl.textContent = text.slice(0, charIndex - 1);
       charIndex--;
       if (charIndex === 0) {
         deleting = false;
@@ -1517,10 +1482,10 @@ window.addEventListener("load", () => {
       }
     }
 
-    setTimeout(typeLoop, deleting ? 45 : 70);
+    setTimeout(loop, deleting ? 45 : 70);
   }
 
-  typeLoop();
+  loop();
 });
 </script>
 
