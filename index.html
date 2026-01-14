@@ -1326,18 +1326,28 @@ function type() {
 }
 
 type();
-</script>
 <script>
-  // Subtle haptic feedback for link clicks (mobile-friendly)
-  document.addEventListener("click", function (e) {
-    const link = e.target.closest("a");
-    if (!link) return;
+  function attachHaptics() {
+    const links = document.querySelectorAll("a");
 
-    // Only vibrate on devices that support it
-    if (navigator.vibrate) {
-      navigator.vibrate(10); // 10ms = subtle, professional
-    }
-  });
+    links.forEach(link => {
+      link.addEventListener("touchstart", () => {
+        if (navigator.vibrate) {
+          navigator.vibrate(10); // subtle, professional
+        }
+      }, { passive: true });
+
+      link.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "touch" && navigator.vibrate) {
+          navigator.vibrate(10);
+        }
+      });
+    });
+  }
+
+  // attach after DOM is ready
+  document.addEventListener("DOMContentLoaded", attachHaptics);
+</script>
 </script>
 </body>
 </html>
