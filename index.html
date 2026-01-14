@@ -1,4 +1,4 @@
-this is my code. I have PhD-Skill Tree Emerge section. I want that emerge after reaching that place. <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -58,6 +58,19 @@ h1,h2,h3,.title,.section-title{
   letter-spacing:0.5px;
 }
 
+    /* ===== Typing Text effect – NO SHAKE FIX ===== */
+.typed-wrap {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 1.4em;
+}
+
+#typed {
+  display: inline-block;
+  will-change: contents;
+  transition: opacity 0.25s ease;
+}
     /* animated gradient overlay */
     body::before{
       content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
@@ -593,7 +606,11 @@ a.pill {
     <section class="hero">
       <div class="card intro reveal">
         <h1 class="title">Dr. Maheshkumar&nbsp;S</h1>
-        <p class="subtitle"><span id="typed"></span></p>
+        <p class="subtitle">
+     <span class="typed-wrap">
+     <span id="typed"></span>
+    </span>
+        </p>
         <div class="badges">
           <span class="badge">Completed PhD viva voce on 17 December 2025 at the School of Management Studies</span>
           <span class="badge">The Gandhigram Rural Institute – Deemed to be University</span>
@@ -1211,24 +1228,7 @@ if (menuToggle && navLinks) {
     });
   });
 }
-    // ===== Typing effect (simple) =====
-    const typedEl = document.getElementById('typed');
-    const roles = [ 
-      'Recipient of Best Research Scholar Award 2024, GRI-DU.',
-      'GRI-JRF',
-      'Research — Employability • Students Psychology • Tourism Management Ed.',
-      'IT HR Experience — Talent & People Operations'
-    ];
-    let ri = 0, ci = 0, del = false;
-    function type() {
-      const word = roles[ri % roles.length];
-      typedEl.textContent = word.slice(0, ci) + (Math.floor(Date.now()/500)%2?'|':'');
-      if(!del) { ci++; if(ci > word.length+10){ del = true; } }
-      else { ci--; if(ci === 0){ del = false; ri++; } }
-      requestAnimationFrame(()=>setTimeout(type, 60));
-    }
-    type();
-
+    
     // ===== Theme toggle =====
     const root = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
@@ -1570,6 +1570,64 @@ type();
 
   document.addEventListener("DOMContentLoaded", attachHaptics);
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const typedEl = document.getElementById("typed");
+  const wrapEl = document.querySelector(".typed-wrap");
+
+  const roles = [
+    "Recipient of Best Research Scholar Award 2024, GRI–DU.",
+    "GRI–JRF | PhD Research Scholar",
+    "Research — Employability • Students Psychology • Tourism Management",
+    "IT HR Experience — Talent & People Operations"
+  ];
+
+  /* Lock width to longest text */
+  const probe = document.createElement("span");
+  probe.style.visibility = "hidden";
+  probe.style.whiteSpace = "nowrap";
+  document.body.appendChild(probe);
+
+  let maxWidth = 0;
+  roles.forEach(r => {
+    probe.textContent = r;
+    maxWidth = Math.max(maxWidth, probe.offsetWidth);
+  });
+
+  wrapEl.style.width = maxWidth + "px";
+  document.body.removeChild(probe);
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function typeLoop() {
+    const text = roles[roleIndex];
+
+    typedEl.textContent = text.slice(0, charIndex);
+
+    if (!deleting) {
+      charIndex++;
+      if (charIndex > text.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1200);
+        return;
+      }
+    } else {
+      charIndex--;
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+
+    setTimeout(typeLoop, deleting ? 40 : 70);
+  }
+
+  typeLoop();
+});
+</script>
+
 
 </script>
 </body>
