@@ -672,92 +672,77 @@ a {
 
 <style>
 /* ===============================
-   PhD → Research ORIGIN FLOW
-   (Advanced · Visual · Stable)
+   PhD Research Bubble Box
+   (Converted from existing card)
    =============================== */
 
 .phd-pipe {
   position: relative;
-  overflow: hidden;
 
+  /* Bubble shape */
+  border-radius: 28px;
+
+  /* Glassy academic background */
   background:
-    linear-gradient(
-      145deg,
-      rgba(110,231,255,0.14),
-      rgba(155,140,255,0.12)
+    radial-gradient(
+      120% 120% at 20% 20%,
+      rgba(110,231,255,0.22),
+      rgba(155,140,255,0.14),
+      rgba(18,24,50,0.85)
     );
 
-  border: 1px solid var(--border);
-  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+
+  /* Floating bubble feel */
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  /* Gentle motion */
+  animation: phd-bubble-float 6s ease-in-out infinite;
 }
 
-/* ORIGIN FLOW LAYER */
+/* Soft glowing edge */
 .phd-pipe::before {
   content: "";
   position: absolute;
   inset: 0;
 
-  /* directional flow from LEFT (PhD side) */
-  background:
-    linear-gradient(
-      110deg,
-      transparent 30%,
-      rgba(110,231,255,0.35),
-      rgba(155,140,255,0.25),
-      transparent 70%
-    );
+  border-radius: inherit;
 
-  background-size: 220% 100%;
-  background-position: -120% 0;
-
-  animation: phd-origin-flow 4.2s ease-in-out infinite;
-  pointer-events: none;
-}
-
-/* subtle inner highlight */
-.phd-pipe::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-
-  border-radius: 16px;
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.06);
+    0 0 0 1px rgba(110,231,255,0.25),
+    0 0 40px rgba(155,140,255,0.35);
+
+  opacity: 0.65;
   pointer-events: none;
 }
 
-/* FLOW animation */
-@keyframes phd-origin-flow {
-  0% {
-    background-position: -120% 0;
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.8;
-  }
-  50% {
-    background-position: 50% 0;
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.8;
-  }
-  100% {
-    background-position: 220% 0;
-    opacity: 0;
-  }
+/* Floating animation */
+@keyframes phd-bubble-float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
-/* Light theme refinement */
-html[data-theme="light"] .phd-pipe::before {
+/* Light theme adaptation */
+html[data-theme="light"] .phd-pipe {
   background:
-    linear-gradient(
-      110deg,
-      transparent 35%,
-      rgba(0,0,0,0.20),
-      rgba(0,0,0,0.14),
-      transparent 70%
+    radial-gradient(
+      120% 120% at 20% 20%,
+      rgba(14,165,233,0.22),
+      rgba(124,58,237,0.18),
+      #ffffff
     );
+
+  border: 1px solid rgba(0,0,0,0.12);
+
+  box-shadow:
+    0 18px 36px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(0,0,0,0.06);
 }
 
 
