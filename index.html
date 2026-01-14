@@ -424,6 +424,15 @@ html:not([data-theme="light"]) .theme-toggle:hover {
 html[data-theme="light"] .theme-toggle:hover {
   box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
 }
+/* ===== TYPED TEXT — ZERO SHAKE, ZERO DEPENDENCY ===== */
+.typed-fixed {
+  display: inline-block;
+  min-width: 60ch;       /* locks width safely */
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  will-change: contents;
+}
 </style>
 <style>
 /* Rest of your CSS... */
@@ -580,9 +589,9 @@ a.pill {
       <div class="card intro reveal">
         <h1 class="title">Dr. Maheshkumar&nbsp;S</h1>
         <p class="subtitle">
-     <span class="typed-wrap">
-     <span id="typed"></span>
-    </span>
+      <p class="subtitle">
+        <span id="typed" class="typed-fixed"></span>
+      </p>
         </p>
 
         <div class="badges">
@@ -1443,51 +1452,50 @@ const radius = 0.2 * mmToPx;
       });
     });
   }
+<script>
 
   document.addEventListener("DOMContentLoaded", attachHaptics);
-
-window.addEventListener("load", () => {
-  const typedEl = document.getElementById("typed");
-  const wrapEl = document.querySelector(".typed-wrap");
-  if (!typedEl || !wrapEl) return;
-
-  const roles = [
+  <script>
+(function () {
+  const texts = [
     "Recipient of Best Research Scholar Award 2024, GRI–DU.",
     "GRI–JRF | PhD Research Scholar",
     "Employability • Students Psychology • Tourism Management",
     "IT HR Experience — Talent & People Operations"
   ];
 
-  let roleIndex = 0;
+  const el = document.getElementById("typed");
+  if (!el) return;
+
+  let textIndex = 0;
   let charIndex = 0;
   let deleting = false;
 
-  function loop() {
-    const text = roles[roleIndex];
+  function run() {
+    const current = texts[textIndex];
 
-    if (!deleting) {
-      typedEl.textContent = text.slice(0, charIndex + 1);
-      charIndex++;
-      if (charIndex === text.length) {
-        deleting = true;
-        setTimeout(loop, 1400);
-        return;
-      }
-    } else {
-      typedEl.textContent = text.slice(0, charIndex - 1);
-      charIndex--;
-      if (charIndex === 0) {
-        deleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-      }
+    el.textContent = deleting
+      ? current.slice(0, charIndex--)
+      : current.slice(0, charIndex++);
+
+    if (!deleting && charIndex > current.length) {
+      deleting = true;
+      setTimeout(run, 1200);
+      return;
     }
 
-    setTimeout(loop, deleting ? 45 : 70);
+    if (deleting && charIndex === 0) {
+      deleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+    }
+
+    setTimeout(run, deleting ? 50 : 80);
   }
 
-  loop();
-});
+  run();
+})();
 </script>
-
+</script>
+</script>
 </body>
 </html>
