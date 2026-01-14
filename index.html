@@ -669,7 +669,6 @@ a {
         </div>
       </div>
     </section>
-
 <style>
 /* ===============================
    PhD → Skills TREE EMERGENCE
@@ -681,20 +680,24 @@ a {
   z-index: 2;
 }
 
-/* Skills = BRANCH (grows out) */
+/* BRANCH — hidden by default */
 .phd-pipe {
   position: relative;
-  transform-origin: left center;
   opacity: 0;
+  transform-origin: left center;
   transform: scaleX(0.2) translateX(-20px);
-  animation: tree-grow 1.2s ease-out forwards;
-  animation-delay: 0.4s;
 
   border-left: 4px solid var(--accent);
   padding-left: 20px;
 }
 
-/* subtle branch line */
+/* Animate ONLY when visible */
+.phd-pipe.in {
+  animation: tree-grow 1.2s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+/* Subtle branch line */
 .phd-pipe::before {
   content: "";
   position: absolute;
@@ -709,7 +712,7 @@ a {
   );
 }
 
-/* TREE GROWTH MOTION */
+/* TREE GROWTH (DESKTOP) */
 @keyframes tree-grow {
   to {
     opacity: 1;
@@ -717,7 +720,9 @@ a {
   }
 }
 
-/* MOBILE: vertical growth (root → branch down) */
+/* ===============================
+   MOBILE: vertical growth
+   =============================== */
 @media (max-width: 900px) {
   .phd-pipe {
     transform-origin: top center;
@@ -748,8 +753,32 @@ a {
     }
   }
 }
+</style>
+<script>
+/* ===============================
+   PhD → Skill Tree Scroll Trigger
+   =============================== */
 
-  </style>
+document.addEventListener("DOMContentLoaded", () => {
+  const phdPipe = document.querySelector(".phd-pipe");
+
+  if (!phdPipe) return;
+
+  const phdObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          observer.unobserve(entry.target); // run once
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+
+  phdObserver.observe(phdPipe);
+});
+</script>
 
 
     <!-- ABOUT -->
