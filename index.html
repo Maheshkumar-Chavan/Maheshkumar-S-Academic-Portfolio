@@ -673,16 +673,13 @@ a {
 <style>
 /* ===============================
    PhD Research Bubble Box
-   (Converted from existing card)
+   (Desktop: Left ↔ Right | Mobile: Calm)
    =============================== */
 
 .phd-pipe {
   position: relative;
-
-  /* Bubble shape */
   border-radius: 28px;
 
-  /* Glassy academic background */
   background:
     radial-gradient(
       120% 120% at 20% 20%,
@@ -693,7 +690,6 @@ a {
 
   border: 1px solid rgba(255,255,255,0.14);
 
-  /* Floating bubble feel */
   box-shadow:
     0 18px 40px rgba(0,0,0,0.35),
     inset 0 0 0 1px rgba(255,255,255,0.06);
@@ -701,16 +697,14 @@ a {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
-  /* Gentle motion */
-  animation: phd-bubble-float 6s ease-in-out infinite;
+  /* DEFAULT: no movement (mobile-safe) */
 }
 
-/* Soft glowing edge */
+/* glowing edge */
 .phd-pipe::before {
   content: "";
   position: absolute;
   inset: 0;
-
   border-radius: inherit;
 
   box-shadow:
@@ -721,14 +715,22 @@ a {
   pointer-events: none;
 }
 
-/* Floating animation */
-@keyframes phd-bubble-float {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+/* ===== DESKTOP ONLY: LEFT ↔ RIGHT FLOAT ===== */
+@media (hover: hover) and (min-width: 901px) {
+  .phd-pipe {
+    animation: phd-bubble-drift 7s ease-in-out infinite;
+  }
+
+@keyframes phd-bubble-drift {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(6px); }
+  50%  { transform: translateX(12px); }
+  75%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
 }
 
-/* Light theme adaptation */
+/* ===== LIGHT THEME ===== */
 html[data-theme="light"] .phd-pipe {
   background:
     radial-gradient(
