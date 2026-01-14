@@ -672,73 +672,83 @@ a {
 
 <style>
 /* ===============================
-   PhD Research Insight Bubble
-   (Premium • Calm • Unique)
+   PhD → Skills TREE EMERGENCE
    =============================== */
 
+/* PHd = ROOT (static) */
+.phd-source {
+  position: relative;
+  z-index: 2;
+}
+
+/* Skills = BRANCH (grows out) */
 .phd-pipe {
   position: relative;
-  border-radius: 28px;
-  padding: 18px;
+  transform-origin: left center;
+  opacity: 0;
+  transform: scaleX(0.2) translateX(-20px);
+  animation: tree-grow 1.2s ease-out forwards;
+  animation-delay: 0.4s;
 
-  background:
-    linear-gradient(var(--card), var(--card)) padding-box,
-    linear-gradient(
-      135deg,
-      rgba(110,231,255,0.55),
-      rgba(155,140,255,0.45),
-      rgba(110,231,255,0.55)
-    ) border-box;
-
-  border: 1.5px solid transparent;
-
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.28),
-    inset 0 0 0 1px rgba(255,255,255,0.05);
-
-  overflow: hidden;
+  border-left: 4px solid var(--accent);
+  padding-left: 20px;
 }
 
-/* subtle research sweep */
-.phd-pipe::after {
+/* subtle branch line */
+.phd-pipe::before {
   content: "";
   position: absolute;
-  inset: -40%;
+  left: -4px;
+  top: 18px;
+  height: 60%;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent),
+    transparent
+  );
+}
 
-  background:
-    linear-gradient(
-      120deg,
-      transparent 40%,
-      rgba(255,255,255,0.25),
-      transparent 60%
+/* TREE GROWTH MOTION */
+@keyframes tree-grow {
+  to {
+    opacity: 1;
+    transform: scaleX(1) translateX(0);
+  }
+}
+
+/* MOBILE: vertical growth (root → branch down) */
+@media (max-width: 900px) {
+  .phd-pipe {
+    transform-origin: top center;
+    transform: scaleY(0.2) translateY(-16px);
+    border-left: none;
+    border-top: 4px solid var(--accent);
+    padding-left: 0;
+    padding-top: 18px;
+  }
+
+  .phd-pipe::before {
+    left: 50%;
+    top: -4px;
+    width: 60%;
+    height: 4px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      to right,
+      var(--accent),
+      transparent
     );
+  }
 
-  animation: phd-research-scan 8s ease-in-out infinite;
-  pointer-events: none;
+  @keyframes tree-grow {
+    to {
+      opacity: 1;
+      transform: scaleY(1) translateY(0);
+    }
+  }
 }
 
-/* calm premium motion */
-@keyframes phd-research-scan {
-  0%   { transform: translateX(-40%) translateY(-40%); }
-  50%  { transform: translateX(40%) translateY(40%); }
-  100% { transform: translateX(-40%) translateY(-40%); }
-}
-
-/* ===== LIGHT THEME ===== */
-html[data-theme="light"] .phd-pipe {
-  background:
-    linear-gradient(var(--card), var(--card)) padding-box,
-    linear-gradient(
-      135deg,
-      rgba(14,165,233,0.55),
-      rgba(124,58,237,0.45),
-      rgba(14,165,233,0.55)
-    ) border-box;
-
-  box-shadow:
-    0 18px 36px rgba(0,0,0,0.18),
-    inset 0 0 0 1px rgba(0,0,0,0.05);
-}
   </style>
     <!-- ABOUT -->
     <section id="about" class="card reveal">
