@@ -513,15 +513,12 @@ html[data-theme="light"] .language-tags .pill::after
 }
 /* ===============================
    LINK PILL — CLEAR DIFFERENTIATION
+   (Dark + Light SAFE — FINAL)
    =============================== */
 
-/* only anchor pills */
 a.pill {
   cursor: pointer;
-}
 
-/* ADD a second animated layer ONLY for links */
-a.pill {
   background:
     linear-gradient(var(--card), var(--card)) padding-box,
     linear-gradient(
@@ -533,7 +530,7 @@ a.pill {
     linear-gradient(
       135deg,
       transparent 45%,
-      rgba(255,255,255,0.35),
+      var(--accent),
       transparent 55%
     ) border-box;
 
@@ -541,10 +538,7 @@ a.pill {
     200% 100%,
     200% 100%,
     300% 300%;
-}
 
-/* diagonal scan animation (links only) */
-a.pill {
   animation:
     pill-border-sweep 4s linear infinite,
     link-scan 2.8s linear infinite;
