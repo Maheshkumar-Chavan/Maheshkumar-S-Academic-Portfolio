@@ -672,8 +672,8 @@ a {
 
 <style>
 /* ===============================
-   PhD → Research Outcome PIPE
-   SINGLE ELEMENT (DESKTOP + MOBILE)
+   PhD → Research Outcome PIPELINE
+   (DESKTOP CENTER + MOBILE DOWN)
    =============================== */
 
 .phd-source {
@@ -690,52 +690,72 @@ a {
   border: 1px solid var(--border);
 }
 
-/* ===== ONE PIPE ELEMENT ===== */
+/* ===== DESKTOP (HORIZONTAL CENTER) ===== */
 .phd-source + .phd-pipe::before {
-  content: "➤";
+  content: "";
   position: absolute;
-  color: var(--accent);
-  font-size: 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* desktop defaults */
-  left: -42px;
   top: 50%;
+  left: -36px;
   transform: translateY(-50%);
-
-  width: 42px;
+  width: 36px;
   height: 6px;
-
   background: linear-gradient(
     90deg,
     transparent,
     var(--accent),
     transparent
   );
-
   border-radius: 999px;
-  animation: phd-flow 2.6s linear infinite;
+  animation: phd-flow 2.8s linear infinite;
 }
 
-/* desktop animation */
+.phd-source + .phd-pipe::after {
+  content: "➤";
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--accent);
+  animation: phd-arrow 2.8s ease-in-out infinite;
+}
+
+/* animations */
 @keyframes phd-flow {
-  0%   { background-position: 0% 50%; opacity: .35; }
-  50%  { background-position: 100% 50%; opacity: 1; }
-  100% { background-position: 0% 50%; opacity: .35; }
+  0% { opacity: .3; }
+  50% { opacity: 1; }
+  100% { opacity: .3; }
 }
 
-/* ===== MOBILE / TABLET (VERTICAL PIPE) ===== */
+@keyframes phd-arrow {
+  0% { transform: translateY(-50%) translateX(0); opacity: .4; }
+  50% { transform: translateY(-50%) translateX(6px); opacity: 1; }
+  100% { transform: translateY(-50%) translateX(0); opacity: .4; }
+}
+
+/* ===== MOBILE / TABLET — FORCE DOWN ===== */
 @media (max-width: 900px) {
+
+  /* HARD RESET desktop positioning */
+  .phd-source + .phd-pipe::before,
+  .phd-source + .phd-pipe::after {
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+
+  /* vertical pipe */
   .phd-source + .phd-pipe::before {
-    left: 50%;
-    top: -44px;
-    transform: translateX(-50%) rotate(90deg);
+    content: "";
+    position: absolute;
+    top: -34px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
 
     width: 6px;
-    height: 44px;
+    height: 34px;
 
     background: linear-gradient(
       180deg,
@@ -743,6 +763,16 @@ a {
       var(--accent),
       transparent
     );
+  }
+
+  /* downward arrow */
+  .phd-source + .phd-pipe::after {
+    content: "➤";
+    position: absolute;
+    top: -54px;
+    left: 50% !important;
+    transform: translateX(-50%) rotate(90deg) !important;
+    font-size: 18px;
   }
 }
   </style>
