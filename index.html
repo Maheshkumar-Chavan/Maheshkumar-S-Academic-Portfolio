@@ -588,11 +588,9 @@ a.pill {
     <section class="hero">
       <div class="card intro reveal">
         <h1 class="title">Dr. Maheshkumar&nbsp;S</h1>
-        <p class="subtitle">
-      <p class="subtitle">
-        <span id="typed" class="typed-fixed"></span>
-      </p>
-        </p>
+       <p class="subtitle">
+          <span id="typed" class="typed-fixed"></span>
+       </p>
 
         <div class="badges">
           <span class="badge">Completed PhD viva voce on 17 December 2025 at the School of Management Studies</span>
@@ -1433,30 +1431,26 @@ const radius = 0.2 * mmToPx;
     drawParticles();
 
   </script>
-
+</script>
 <script>
-  function attachHaptics() {
-    const links = document.querySelectorAll("a");
+/* ===============================
+   HAPTICS
+   =============================== */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("touchstart", () => {
+      if (navigator.vibrate) navigator.vibrate(150);
+    }, { passive: true });
+  });
+});
 
-    links.forEach(link => {
-      link.addEventListener("touchstart", () => {
-        if (navigator.vibrate) {
-          navigator.vibrate(200);
-        }
-      }, { passive: true });
+/* ===============================
+   TYPED TEXT — FINAL, WORKING
+   =============================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("typed");
+  if (!el) return;
 
-      link.addEventListener("pointerdown", (e) => {
-        if (e.pointerType === "touch" && navigator.vibrate) {
-          navigator.vibrate(200);
-        }
-      });
-    });
-  }
-<script>
-
-  document.addEventListener("DOMContentLoaded", attachHaptics);
-  <script>
-(function () {
   const texts = [
     "Recipient of Best Research Scholar Award 2024, GRI–DU.",
     "GRI–JRF | PhD Research Scholar",
@@ -1464,38 +1458,27 @@ const radius = 0.2 * mmToPx;
     "IT HR Experience — Talent & People Operations"
   ];
 
-  const el = document.getElementById("typed");
-  if (!el) return;
+  let t = 0, c = 0, del = false;
 
-  let textIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
+  function type() {
+    const s = texts[t];
+    el.textContent = del ? s.slice(0, --c) : s.slice(0, ++c);
 
-  function run() {
-    const current = texts[textIndex];
-
-    el.textContent = deleting
-      ? current.slice(0, charIndex--)
-      : current.slice(0, charIndex++);
-
-    if (!deleting && charIndex > current.length) {
-      deleting = true;
-      setTimeout(run, 1200);
+    if (!del && c === s.length) {
+      del = true;
+      setTimeout(type, 1200);
       return;
     }
-
-    if (deleting && charIndex === 0) {
-      deleting = false;
-      textIndex = (textIndex + 1) % texts.length;
+    if (del && c === 0) {
+      del = false;
+      t = (t + 1) % texts.length;
     }
-
-    setTimeout(run, deleting ? 50 : 80);
+    setTimeout(type, del ? 50 : 80);
   }
 
-  run();
-})();
+  type();
+});
 </script>
-</script>
-</script>
+
 </body>
 </html>
