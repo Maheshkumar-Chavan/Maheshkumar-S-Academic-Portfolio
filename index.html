@@ -823,7 +823,7 @@ a {
 }
 
 /* ===============================
-   MOBILE — TREE + EDUCATION
+   MOBILE — TREE ALIGNMENT FIX
    =============================== */
 @media (max-width: 900px) {
 
@@ -833,9 +833,9 @@ a {
     transform: scaleY(0.2) translateY(-16px);
     border-left: none;
     border-top: 4px solid var(--accent);
+    padding-top: 26px;          /* space from pipe */
     padding-left: 0;
-    padding-top: 18px;
-    text-align: center;
+    text-align: center;         /* CENTER EVERYTHING */
   }
 
   .phd-pipe::before {
@@ -854,7 +854,34 @@ a {
     }
   }
 
-  /* Mobile education spacing */
+  /* Header alignment */
+  .phd-pipe .pipe-header {
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  /* Skills pills alignment */
+  .phd-pipe .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   /* FIX */
+    align-items: center;
+    gap: 8px;
+  }
+
+  .phd-pipe .tags .pill {
+    text-align: center;
+    white-space: normal;
+  }
+
+  /* Note text */
+  .phd-pipe .pipe-note {
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  /* Education cards spacing (non-PhD) */
   #education .grid.two > .item:not(.phd-source) {
     padding: 16px;
   }
