@@ -549,6 +549,20 @@ a.pill {
   0%   { background-position: 0% 0%, 0% 0%, -200% -200%; }
   100% { background-position: 200% 0%, 200% 0%, 200% 200%; }
 }
+/* ===== PhD split layout ===== */
+.phd-split {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+
+/* mobile-friendly */
+@media (max-width: 900px) {
+  .phd-split {
+    grid-template-columns: 1fr;
+  }
+}
+
   </style>
 </head>
 <body>
