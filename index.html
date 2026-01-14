@@ -424,14 +424,21 @@ html:not([data-theme="light"]) .theme-toggle:hover {
 html[data-theme="light"] .theme-toggle:hover {
   box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
 }
-/* ===== TYPED TEXT — ZERO SHAKE, ZERO DEPENDENCY ===== */
+/* ===== TYPED TEXT — DESKTOP + MOBILE SAFE ===== */
 .typed-fixed {
   display: inline-block;
-  min-width: 60ch;       /* locks width safely */
-  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
-  will-change: contents;
+  max-width: 100%;
+}
+
+/* Mobile override */
+@media (max-width: 600px) {
+  .typed-fixed {
+    max-width: 100%;
+    white-space: normal;   /* allow wrapping on mobile */
+    text-align: center;
+  }
 }
 </style>
 <style>
@@ -1429,13 +1436,9 @@ const radius = 0.2 * mmToPx;
       requestAnimationFrame(drawParticles);
     }
     drawParticles();
-
-  </script>
 </script>
 <script>
-/* ===============================
-   HAPTICS
-   =============================== */
+/* HAPTICS */
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("a").forEach(link => {
     link.addEventListener("touchstart", () => {
@@ -1444,9 +1447,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ===============================
-   TYPED TEXT — FINAL, WORKING
-   =============================== */
+/* TYPED TEXT */
 document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("typed");
   if (!el) return;
@@ -1479,6 +1480,8 @@ document.addEventListener("DOMContentLoaded", () => {
   type();
 });
 </script>
+</body>
+</html>
 
 </body>
 </html>
