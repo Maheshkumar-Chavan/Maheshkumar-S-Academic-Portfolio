@@ -673,7 +673,7 @@ a {
 <style>
 /* ===============================
    PhD → Research Outcome PIPELINE
-   (DESKTOP CENTER + MOBILE DOWN)
+   (DESKTOP CENTERED, MOBILE FIXED)
    =============================== */
 
 .phd-source {
@@ -690,7 +690,7 @@ a {
   border: 1px solid var(--border);
 }
 
-/* ===== DESKTOP (HORIZONTAL CENTER) ===== */
+/* ===== DESKTOP: HORIZONTAL FLOW ===== */
 .phd-source + .phd-pipe::before {
   content: "";
   position: absolute;
@@ -713,7 +713,7 @@ a {
   content: "➤";
   position: absolute;
   top: 50%;
-  left: -22px;
+  left: -18px;
   transform: translateY(-50%);
   font-size: 18px;
   color: var(--accent);
@@ -733,29 +733,26 @@ a {
   100% { transform: translateY(-50%) translateX(0); opacity: .4; }
 }
 
-/* ===== MOBILE / TABLET — FORCE DOWN ===== */
+/* ===== MOBILE / TABLET: VERTICAL FLOW (FIXED) ===== */
 @media (max-width: 900px) {
 
-  /* HARD RESET desktop positioning */
+  /* reset desktop logic */
   .phd-source + .phd-pipe::before,
   .phd-source + .phd-pipe::after {
     left: auto !important;
     right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
     transform: none !important;
+    animation: none;
   }
 
-  /* vertical pipe */
+  /* vertical line */
   .phd-source + .phd-pipe::before {
-    content: "";
-    position: absolute;
-    top: -34px;
+    top: -36px;
     left: 50% !important;
     transform: translateX(-50%) !important;
 
     width: 6px;
-    height: 34px;
+    height: 28px;
 
     background: linear-gradient(
       180deg,
@@ -765,16 +762,16 @@ a {
     );
   }
 
-  /* downward arrow */
+  /* arrow ALWAYS at bottom of line */
   .phd-source + .phd-pipe::after {
-    content: "➤";
-    position: absolute;
-    top: -54px;
+    top: -10px;                 /* directly below line */
     left: 50% !important;
     transform: translateX(-50%) rotate(90deg) !important;
     font-size: 18px;
+    color: var(--accent);
   }
 }
+
   </style>
     <!-- ABOUT -->
     <section id="about" class="card reveal">
