@@ -549,92 +549,6 @@ a.pill {
   0%   { background-position: 0% 0%, 0% 0%, -200% -200%; }
   100% { background-position: 200% 0%, 200% 0%, 200% 200%; }
 }
-/* ===============================
-   PhD → Research Outcome Pipe
-   =============================== */
-
-.phd-pipe {
-  position: relative;
-  background: linear-gradient(
-    145deg,
-    rgba(110,231,255,0.14),
-    rgba(155,140,255,0.10)
-  );
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-/* animated pipe */
-.phd-pipe::before {
-  content: "";
-  position: absolute;
-  left: -64px;
-  top: 42px;
-  width: 64px;
-  height: 6px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent),
-    transparent
-  );
-  border-radius: 999px;
-  animation: pipe-flow 2.8s linear infinite;
-}
-
-/* arrow head */
-.phd-pipe::after {
-  content: "➤";
-  position: absolute;
-  left: -28px;
-  top: 32px;
-  font-size: 18px;
-  color: var(--accent);
-  animation: arrow-pulse 2.8s ease-in-out infinite;
-}
-
-/* pipe animation */
-@keyframes pipe-flow {
-  0%   { background-position: 0% 50%; opacity: .3; }
-  50%  { background-position: 100% 50%; opacity: .9; }
-  100% { background-position: 0% 50%; opacity: .3; }
-}
-
-/* arrow pulse */
-@keyframes arrow-pulse {
-  0%   { transform: translateX(0); opacity: .4; }
-  50%  { transform: translateX(6px); opacity: 1; }
-  100% { transform: translateX(0); opacity: .4; }
-}
-
-/* header */
-.pipe-header {
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-/* note */
-.pipe-note {
-  font-size: 13px;
-  margin-top: 8px;
-}
-
-/* Mobile & tablet: convert to top-down flow */
-@media (max-width: 900px) {
-  .phd-pipe::before {
-    left: 50%;
-    top: -24px;
-    width: 6px;
-    height: 24px;
-    transform: translateX(-50%);
-  }
-
-  .phd-pipe::after {
-    left: 50%;
-    top: -40px;
-    transform: translateX(-50%) rotate(90deg);
-  }
-}
 
   </style>
 </head>
@@ -756,6 +670,96 @@ a {
       </div>
     </section>
 
+<style>
+/* ===============================
+   PhD → Research Outcome PIPELINE
+   (REAL CONNECTION BETWEEN BOXES)
+   =============================== */
+
+/* mark the source (PhD box) */
+.phd-source {
+  position: relative;
+}
+
+/* the connected outcome box */
+.phd-source + .phd-pipe {
+  position: relative;
+  background:
+    linear-gradient(145deg,
+      rgba(110,231,255,0.16),
+      rgba(155,140,255,0.12)
+    );
+  border: 1px solid var(--border);
+}
+
+/* PIPE BODY — flows from PhD → Skills */
+.phd-source + .phd-pipe::before {
+  content: "";
+  position: absolute;
+
+  /* position BETWEEN grid columns */
+  left: -34px;
+  top: 48px;
+
+  width: 34px;
+  height: 6px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+
+  border-radius: 999px;
+  animation: phd-flow 2.8s linear infinite;
+}
+
+/* ARROW HEAD */
+.phd-source + .phd-pipe::after {
+  content: "➤";
+  position: absolute;
+
+  left: -20px;
+  top: 38px;
+
+  font-size: 18px;
+  color: var(--accent);
+
+  animation: phd-arrow 2.8s ease-in-out infinite;
+}
+
+/* FLOW animation */
+@keyframes phd-flow {
+  0%   { background-position: 0% 50%; opacity: .3; }
+  50%  { background-position: 100% 50%; opacity: 1; }
+  100% { background-position: 0% 50%; opacity: .3; }
+}
+
+/* Arrow pulse */
+@keyframes phd-arrow {
+  0%   { transform: translateX(0); opacity: .4; }
+  50%  { transform: translateX(6px); opacity: 1; }
+  100% { transform: translateX(0); opacity: .4; }
+}
+
+/* Mobile / Tablet → vertical pipeline */
+@media (max-width: 900px) {
+  .phd-source + .phd-pipe::before {
+    left: 50%;
+    top: -26px;
+    width: 6px;
+    height: 26px;
+    transform: translateX(-50%);
+  }
+
+  .phd-source + .phd-pipe::after {
+    left: 50%;
+    top: -44px;
+    transform: translateX(-50%) rotate(90deg);
+  }
+}
+  </style>
     <!-- ABOUT -->
     <section id="about" class="card reveal">
       <h2 class="section-title"><i class="fa-regular fa-id-card"></i> About</h2>
@@ -789,7 +793,7 @@ a {
           <div class="muted">The Gandhigram Rural Institute – Deemed to be University, Gandhigram, Dindigul District, Tamil Nadu, India.</div>
           <div class="muted">First Class with A++</div>
         </div>
-        <div class="item">
+        <div class="item phd-source">
           <div class="kpi">Ph.D. (Full-Time) <span class="pill">Course Work CGPA: 8.57</span></div>
 
           <a class="pill thesis-anim" target="_blank" href="http://hdl.handle.net/10603/685068">
