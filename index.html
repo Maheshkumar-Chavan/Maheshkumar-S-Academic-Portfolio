@@ -673,35 +673,37 @@ a {
 <style>
 /* ===============================
    PhD → Research Outcome PIPELINE
-   (REAL CONNECTION BETWEEN BOXES)
+   (CENTERED DESKTOP + CORRECT MOBILE)
    =============================== */
 
-/* mark the source (PhD box) */
+/* source box */
 .phd-source {
   position: relative;
 }
 
-/* the connected outcome box */
+/* target box */
 .phd-source + .phd-pipe {
   position: relative;
-  background:
-    linear-gradient(145deg,
-      rgba(110,231,255,0.16),
-      rgba(155,140,255,0.12)
-    );
+  background: linear-gradient(
+    145deg,
+    rgba(110,231,255,0.16),
+    rgba(155,140,255,0.12)
+  );
   border: 1px solid var(--border);
 }
 
-/* PIPE BODY — flows from PhD → Skills */
+/* ===== DESKTOP PIPE (CENTERED) ===== */
 .phd-source + .phd-pipe::before {
   content: "";
   position: absolute;
 
-  /* position BETWEEN grid columns */
-  left: -34px;
-  top: 48px;
+  /* center vertically */
+  top: 50%;
+  transform: translateY(-50%);
 
-  width: 34px;
+  /* between grid columns */
+  left: -36px;
+  width: 36px;
   height: 6px;
 
   background: linear-gradient(
@@ -715,47 +717,56 @@ a {
   animation: phd-flow 2.8s linear infinite;
 }
 
-/* ARROW HEAD */
+/* arrow head */
 .phd-source + .phd-pipe::after {
   content: "➤";
   position: absolute;
 
-  left: -20px;
-  top: 38px;
+  top: 50%;
+  transform: translateY(-50%);
 
+  left: -22px;
   font-size: 18px;
   color: var(--accent);
 
   animation: phd-arrow 2.8s ease-in-out infinite;
 }
 
-/* FLOW animation */
+/* animations */
 @keyframes phd-flow {
   0%   { background-position: 0% 50%; opacity: .3; }
   50%  { background-position: 100% 50%; opacity: 1; }
   100% { background-position: 0% 50%; opacity: .3; }
 }
 
-/* Arrow pulse */
 @keyframes phd-arrow {
-  0%   { transform: translateX(0); opacity: .4; }
-  50%  { transform: translateX(6px); opacity: 1; }
-  100% { transform: translateX(0); opacity: .4; }
+  0%   { transform: translateY(-50%) translateX(0); opacity: .4; }
+  50%  { transform: translateY(-50%) translateX(6px); opacity: 1; }
+  100% { transform: translateY(-50%) translateX(0); opacity: .4; }
 }
 
-/* Mobile / Tablet → vertical pipeline */
+/* ===== MOBILE / TABLET (TOP-DOWN PIPE) ===== */
 @media (max-width: 900px) {
+
   .phd-source + .phd-pipe::before {
+    top: -30px;
     left: 50%;
-    top: -26px;
-    width: 6px;
-    height: 26px;
     transform: translateX(-50%);
+
+    width: 6px;
+    height: 30px;
+
+    background: linear-gradient(
+      180deg,
+      transparent,
+      var(--accent),
+      transparent
+    );
   }
 
   .phd-source + .phd-pipe::after {
+    top: -46px;
     left: 50%;
-    top: -44px;
     transform: translateX(-50%) rotate(90deg);
   }
 }
