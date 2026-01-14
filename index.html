@@ -1333,7 +1333,7 @@ type();
     links.forEach(link => {
       link.addEventListener("touchstart", () => {
         if (navigator.vibrate) {
-          navigator.vibrate(200); // subtle, professional
+          navigator.vibrate(200);
         }
       }, { passive: true });
 
@@ -1345,9 +1345,9 @@ type();
     });
   }
 
-  // attach after DOM is ready
   document.addEventListener("DOMContentLoaded", attachHaptics);
 </script>
+
 </script>
 </body>
 </html>
