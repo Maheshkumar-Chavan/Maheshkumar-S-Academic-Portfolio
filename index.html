@@ -821,6 +821,26 @@ a {
 #education .grid.two > .item:not(.phd-source) .muted:empty {
   display: none;
 }
+/* ===============================
+   PhD — INTERNAL SPACING FIX
+   =============================== */
+
+/* Space after PhD title */
+#education .phd-source .kpi:first-child {
+  margin-bottom: 10px;
+}
+
+/* Space around thesis link */
+#education .phd-source .thesis-anim {
+  display: inline-block;
+  margin: 8px 0 10px;   /* TOP & BOTTOM SPACE */
+}
+
+/* Space before date line */
+#education .phd-source .kpi + .thesis-anim + .kpi,
+#education .phd-source .thesis-anim + .kpi {
+  margin-top: 6px;
+}
 
 /* ===============================
    MOBILE — TREE ALIGNMENT FIX
