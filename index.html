@@ -746,8 +746,8 @@ a {
       </div>
     </section>
 
-<style>
-/* ===============================
+    <Style>
+    /* ===============================
    PhD → Skills TREE EMERGENCE
    =============================== */
 
@@ -793,29 +793,31 @@ a {
 }
 
 /* ===============================
-   EDUCATION — MATCH PhD (NON-PhD)
+   EDUCATION — SAME AS PhD
+   (NON-PhD ONLY)
    =============================== */
 
-/* DESKTOP FIX (PhD untouched) */
+/* Desktop */
 #education .grid.two > .item:not(.phd-source) {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   padding: 18px 18px 22px;
 }
 
+/* Text rhythm */
 #education .grid.two > .item:not(.phd-source) .kpi {
   line-height: 1.35;
+  margin-bottom: 6px;
 }
 
 #education .grid.two > .item:not(.phd-source) .kpi + .kpi {
-  margin-top: -4px;
+  margin-bottom: 8px;
 }
 
 #education .grid.two > .item:not(.phd-source) .muted {
   line-height: 1.55;
+  margin-bottom: 6px;
 }
 
+/* Remove empty rows */
 #education .grid.two > .item:not(.phd-source) .muted:empty {
   display: none;
 }
@@ -833,9 +835,31 @@ a {
     border-top: 4px solid var(--accent);
     padding-left: 0;
     padding-top: 18px;
-    text-align
+    text-align: center;
+  }
 
-  </style>
+  .phd-pipe::before {
+    left: 50%;
+    top: -4px;
+    width: 60%;
+    height: 4px;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, var(--accent), transparent);
+  }
+
+  @keyframes tree-grow {
+    to {
+      opacity: 1;
+      transform: scaleY(1) translateY(0);
+    }
+  }
+
+  /* Mobile education spacing */
+  #education .grid.two > .item:not(.phd-source) {
+    padding: 16px;
+  }
+}
+</style>
 <script>
 /* ===============================
    PhD → Skill Tree REPEAT EMERGE
@@ -850,22 +874,19 @@ document.addEventListener("DOMContentLoaded", () => {
     (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          /* ENTER viewport → grow */
           entry.target.classList.add("in");
         } else {
-          /* EXIT viewport → collapse */
           entry.target.classList.remove("in");
         }
       });
     },
-    {
-      threshold: 0.35   // adjust if needed (0.25–0.4 works best)
-    }
+    { threshold: 0.35 }
   );
 
   phdObserver.observe(phdPipe);
 });
 </script>
+
 
     <!-- EXPERIENCE -->
     <section id="experience" class="card reveal">
