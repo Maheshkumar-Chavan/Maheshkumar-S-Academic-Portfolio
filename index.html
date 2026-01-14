@@ -763,12 +763,11 @@ a {
   opacity: 0;
   transform-origin: left center;
   transform: scaleX(0.2) translateX(-20px);
-
   border-left: 4px solid var(--accent);
   padding-left: 20px;
 }
 
-/* Animate ONLY when visible */
+/* Animate when visible */
 .phd-pipe.in {
   animation: tree-grow 1.2s ease-out forwards;
   animation-delay: 0.4s;
@@ -782,14 +781,10 @@ a {
   top: 18px;
   height: 60%;
   width: 4px;
-  background: linear-gradient(
-    to bottom,
-    var(--accent),
-    transparent
-  );
+  background: linear-gradient(to bottom, var(--accent), transparent);
 }
 
-/* TREE GROWTH (DESKTOP) */
+/* Desktop growth */
 @keyframes tree-grow {
   to {
     opacity: 1;
@@ -798,97 +793,17 @@ a {
 }
 
 /* ===============================
-   MOBILE: vertical growth
-   =============================== */
-@media (max-width: 900px) {
-  .phd-pipe {
-    transform-origin: top center;
-    transform: scaleY(0.2) translateY(-16px);
-    border-left: none;
-    border-top: 4px solid var(--accent);
-    padding-left: 0;
-    padding-top: 18px;
-  }
-
-  .phd-pipe::before {
-    left: 50%;
-    top: -4px;
-    width: 60%;
-    height: 4px;
-    transform: translateX(-50%);
-    background: linear-gradient(
-      to right,
-      var(--accent),
-      transparent
-    );
-  }
-
-  @keyframes tree-grow {
-    to {
-      opacity: 1;
-      transform: scaleY(1) translateY(0);
-    }
-  }
-  /* ===============================
    EDUCATION — MATCH PhD (NON-PhD)
    =============================== */
 
-/* Apply PhD-like spacing ONLY to non-PhD items */
-#education .item:not(.phd-source) {
+/* DESKTOP FIX (PhD untouched) */
+#education .grid.two > .item:not(.phd-source) {
   display: flex;
   flex-direction: column;
-  gap: 12px;                    /* same vertical rhythm as PhD */
-  padding: 18px 18px 22px;      /* same inner spacing as PhD */
+  gap: 12px;
+  padding: 18px 18px 22px;
 }
 
-/* Degree title */
-#education .item:not(.phd-source) .kpi {
-  line-height: 1.35;
-}
-
-/* Year line behaves like PhD date line */
-#education .item:not(.phd-source) .kpi + .kpi {
-  margin-top: -4px;
-}
-
-/* Description text spacing */
-#education .item:not(.phd-source) .muted {
-  line-height: 1.55;
-}
-
-/* Remove empty placeholder rows */
-#education .item:not(.phd-source) .muted:empty {
-  display: none;
-}
-
-/* Ensure visual balance like PhD */
-#education .item:not(.phd-source) .pill {
-  margin-top: 4px;
-  align-self: flex-start;
-}
-
-/* ===============================
-   MOBILE — SAME LOGIC
-   =============================== */
-@media (max-width: 900px) {
-  #education .item:not(.phd-source) {
-    padding: 16px;
-    gap: 10px;
-  }
-}
-/* ===============================
-   EDUCATION — FORCE MATCH PhD
-   (DESKTOP FIX — PhD UNTOUCHED)
-   =============================== */
-
-#education .grid.two > .item:not(.phd-source) {
-  padding: 18px 18px 22px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-}
-
-/* Match PhD text rhythm */
 #education .grid.two > .item:not(.phd-source) .kpi {
   line-height: 1.35;
 }
@@ -901,55 +816,25 @@ a {
   line-height: 1.55;
 }
 
-/* Remove empty placeholders */
 #education .grid.two > .item:not(.phd-source) .muted:empty {
   display: none;
 }
 
 /* ===============================
-   MOBILE — SAME BEHAVIOR
-   =============================== */
-@media (max-width: 900px) {
-  #education .grid.two > .item:not(.phd-source) {
-    padding: 16px !important;
-    gap: 10px !important;
-  }
-}
-
-  /* ===============================
-   MOBILE ALIGNMENT FIX — PhD PIPE
+   MOBILE — TREE + EDUCATION
    =============================== */
 @media (max-width: 900px) {
 
+  /* Tree becomes vertical */
   .phd-pipe {
-    text-align: center;              /* center text */
-    align-items: center;
-  }
+    transform-origin: top center;
+    transform: scaleY(0.2) translateY(-16px);
+    border-left: none;
+    border-top: 4px solid var(--accent);
+    padding-left: 0;
+    padding-top: 18px;
+    text-align
 
-  .phd-pipe .pipe-header {
-    font-weight: 700;
-    margin-bottom: 12px;
-    text-align: center;
-  }
-
-  .phd-pipe .tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;         /* center skill pills */
-    gap: 8px;
-  }
-
-  .phd-pipe .tags .pill {
-    white-space: normal;             /* allow wrapping */
-    text-align: center;
-  }
-
-  .phd-pipe .pipe-note {
-    margin-top: 12px;
-    text-align: center;
-  }
-}
-}
   </style>
 <script>
 /* ===============================
