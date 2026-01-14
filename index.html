@@ -549,6 +549,93 @@ a.pill {
   0%   { background-position: 0% 0%, 0% 0%, -200% -200%; }
   100% { background-position: 200% 0%, 200% 0%, 200% 200%; }
 }
+/* ===============================
+   PhD → Research Outcome Pipe
+   =============================== */
+
+.phd-pipe {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(110,231,255,0.14),
+    rgba(155,140,255,0.10)
+  );
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* animated pipe */
+.phd-pipe::before {
+  content: "";
+  position: absolute;
+  left: -64px;
+  top: 42px;
+  width: 64px;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  border-radius: 999px;
+  animation: pipe-flow 2.8s linear infinite;
+}
+
+/* arrow head */
+.phd-pipe::after {
+  content: "➤";
+  position: absolute;
+  left: -28px;
+  top: 32px;
+  font-size: 18px;
+  color: var(--accent);
+  animation: arrow-pulse 2.8s ease-in-out infinite;
+}
+
+/* pipe animation */
+@keyframes pipe-flow {
+  0%   { background-position: 0% 50%; opacity: .3; }
+  50%  { background-position: 100% 50%; opacity: .9; }
+  100% { background-position: 0% 50%; opacity: .3; }
+}
+
+/* arrow pulse */
+@keyframes arrow-pulse {
+  0%   { transform: translateX(0); opacity: .4; }
+  50%  { transform: translateX(6px); opacity: 1; }
+  100% { transform: translateX(0); opacity: .4; }
+}
+
+/* header */
+.pipe-header {
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+/* note */
+.pipe-note {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Mobile & tablet: convert to top-down flow */
+@media (max-width: 900px) {
+  .phd-pipe::before {
+    left: 50%;
+    top: -24px;
+    width: 6px;
+    height: 24px;
+    transform: translateX(-50%);
+  }
+
+  .phd-pipe::after {
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%) rotate(90deg);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -645,63 +732,6 @@ a {
     box-shadow 0.25s ease,
     background 0.25s ease;
 }
-/* ===== PhD outcome bubble ===== */
-.phd-bubble {
-  position: relative;
-  background: linear-gradient(
-    145deg,
-    rgba(110,231,255,0.10),
-    rgba(155,140,255,0.08)
-  );
-  border: 1px dashed var(--border);
-}
-
-/* connector line */
-.phd-bubble::before {
-  content: "";
-  position: absolute;
-  left: -18px;
-  top: 28px;
-  width: 18px;
-  height: 1.5px;
-  background: var(--accent);
-  opacity: 0.6;
-}
-
-/* small dot at connector */
-.phd-bubble::after {
-  content: "";
-  position: absolute;
-  left: -24px;
-  top: 24px;
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--accent);
-}
-
-/* title style */
-.bubble-title {
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--text);
-}
-
-/* note text */
-.bubble-note {
-  font-size: 13px;
-  margin-top: 8px;
-}
-
-/* mobile: remove connector */
-@media (max-width: 900px) {
-  .phd-bubble::before,
-  .phd-bubble::after {
-    display: none;
-  }
-}
-
 </style>
 
         <div class="tags">
@@ -777,8 +807,8 @@ a {
             The Gandhigram Rural Institute – Deemed to be University, Gandhigram, Tamil Nadu, India.
           </p>
         </div>
-        <div class="item phd-bubble">
-          <div class="bubble-title">
+        <div class="item phd-pipe">
+        <div class="pipe-header">
             Top 10 Employability Skills Shaping Career-Ready MBA Graduates in Tamil Nadu
           </div>
 
@@ -795,7 +825,7 @@ a {
             <span class="pill">Web & E-Commerce Skills <small>(Technical)</small></span>
           </div>
 
-          <p class="muted bubble-note" style="font-size:13px; margin-top:8px;">
+          <p class="muted pipe-note">
             Derived from PhD research findings on MBA employability alignment in Tamil Nadu.
           </p>
         </div>
