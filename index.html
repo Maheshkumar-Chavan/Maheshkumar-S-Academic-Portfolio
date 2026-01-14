@@ -862,6 +862,54 @@ a {
     text-align: center;
   }
 }
+/* ===============================
+   EDUCATION — MATCH PhD (NON-PhD)
+   =============================== */
+
+/* Apply PhD-like spacing ONLY to non-PhD items */
+#education .item:not(.phd-source) {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                    /* same vertical rhythm as PhD */
+  padding: 18px 18px 22px;      /* same inner spacing as PhD */
+}
+
+/* Degree title */
+#education .item:not(.phd-source) .kpi {
+  line-height: 1.35;
+}
+
+/* Year line behaves like PhD date line */
+#education .item:not(.phd-source) .kpi + .kpi {
+  margin-top: -4px;
+}
+
+/* Description text spacing */
+#education .item:not(.phd-source) .muted {
+  line-height: 1.55;
+}
+
+/* Remove empty placeholder rows */
+#education .item:not(.phd-source) .muted:empty {
+  display: none;
+}
+
+/* Ensure visual balance like PhD */
+#education .item:not(.phd-source) .pill {
+  margin-top: 4px;
+  align-self: flex-start;
+}
+
+/* ===============================
+   MOBILE — SAME LOGIC
+   =============================== */
+@media (max-width: 900px) {
+  #education .item:not(.phd-source) {
+    padding: 16px;
+    gap: 10px;
+  }
+}
+
 }
   </style>
 <script>
