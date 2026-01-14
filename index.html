@@ -441,7 +441,44 @@ html[data-theme="light"] .theme-toggle:hover {
   opacity: 1;
 }
 /* Rest of your CSS... */
+/* ===============================
+   REAL MOVING DOT — GUARANTEED
+   =============================== */
 
+.language-tags .pill {
+  position: relative;
+  overflow: hidden;
+}
+
+/* the dot */
+.language-tags .pill::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent);
+
+  top: 0;
+  left: 0;
+
+  animation: lang-border-move 4s linear infinite;
+}
+
+/* stagger so each feels unique */
+.language-tags .pill:nth-child(2)::after { animation-delay: 1s; }
+.language-tags .pill:nth-child(3)::after { animation-delay: 2s; }
+.language-tags .pill:nth-child(4)::after { animation-delay: 3s; }
+
+/* border path animation */
+@keyframes lang-border-move {
+  0%   { top: 0;    left: 0; }
+  25%  { top: 0;    left: calc(100% - 6px); }
+  50%  { top: calc(100% - 6px); left: calc(100% - 6px); }
+  75%  { top: calc(100% - 6px); left: 0; }
+  100% { top: 0;    left: 0; }
+}
   </style>
 </head>
 <body>
@@ -492,7 +529,7 @@ html[data-theme="light"] .theme-toggle:hover {
           <span class="badge">Tamil Nadu, India</span>
         </div>
         <!-- Added Language Skills -->
-      <div class="tags" style="margin:16px 0;">
+       <div class="tags language-tags" style="margin:16px 0;">
         <span class="pill"><i class="fa-solid fa-star"></i> English: 5/5</span>
         <span class="pill"><i class="fa-solid fa-star"></i> Marathi: 5/5</span>
         <span class="pill"><i class="fa-solid fa-star-half-stroke"></i> Hindi: 3/5</span>
@@ -533,7 +570,7 @@ html[data-theme="light"] .theme-toggle:hover {
           <a class="pill" target="_blank" href="https://orcid.org/0009-0003-8002-6437"><i class="fa-brands fa-orcid"></i> ORCID</a>
           <a class="pill" target="_blank" href="https://www.researchgate.net/profile/Maheshkumar-s"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
           <a class="pill" target="_blank" href="https://scholar.google.com/citations?user=jzrBfd4AAAAJ&hl=en"><i class="fa-brands fa-google"></i> Google Scholar</a>
-          <a class="pill" target="_blank" href="https://zenodo.org/me/uploads?q=&f=shared_with_me%3Afalse&l=list&p=1&s=10&sort=newest"><i class="fa-brands fa-z"></i> Zenodo</a>
+          <a class="pill" target="_blank" href="https://zenodo.org/me/uploads?q=&f=shared_with_me%3Afalse&l=list&p=1&s=10&sort=newest"> <i class="fa-brands fa-z"></i> Zenodo</a>
         </div>
         <div class="cta">
           <a class="btn primary" href="#publications"><i class="fa-solid fa-book-open"></i> Publications</a>
