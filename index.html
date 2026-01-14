@@ -756,7 +756,7 @@ a {
 </style>
 <script>
 /* ===============================
-   PhD → Skill Tree Scroll Trigger
+   PhD → Skill Tree REPEAT EMERGE
    =============================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -765,15 +765,20 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!phdPipe) return;
 
   const phdObserver = new IntersectionObserver(
-    (entries, observer) => {
+    (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          /* ENTER viewport → grow */
           entry.target.classList.add("in");
-          observer.unobserve(entry.target); // run once
+        } else {
+          /* EXIT viewport → collapse */
+          entry.target.classList.remove("in");
         }
       });
     },
-    { threshold: 0.35 }
+    {
+      threshold: 0.35   // adjust if needed (0.25–0.4 works best)
+    }
   );
 
   phdObserver.observe(phdPipe);
