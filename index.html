@@ -58,19 +58,6 @@ h1,h2,h3,.title,.section-title{
   letter-spacing:0.5px;
 }
 
-    /* ===== Typing Text effect – NO SHAKE FIX ===== */
-.typed-wrap {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  min-height: 1.4em;
-}
-
-#typed {
-  display: inline-block;
-  will-change: contents;
-  transition: opacity 0.25s ease;
-}
     /* animated gradient overlay */
     body::before{
       content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
@@ -611,6 +598,22 @@ a.pill {
      <span id="typed"></span>
     </span>
         </p>
+        <style>
+
+    /* ===== Typing Text effect – NO SHAKE FIX ===== */
+.typed-wrap {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 1.4em;
+}
+
+#typed {
+  display: inline-block;
+  will-change: contents;
+  transition: opacity 0.25s ease;
+}
+</style>
         <div class="badges">
           <span class="badge">Completed PhD viva voce on 17 December 2025 at the School of Management Studies</span>
           <span class="badge">The Gandhigram Rural Institute – Deemed to be University</span>
