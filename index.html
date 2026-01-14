@@ -1630,7 +1630,44 @@ document.addEventListener("DOMContentLoaded", () => {
   typeLoop();
 });
 </script>
+<script>
+window.addEventListener("load", () => {
+  const typedEl = document.getElementById("typed");
+  const wrapEl = document.querySelector(".typed-wrap");
 
+  if (!typedEl || !wrapEl) return;
+
+  const roles = [
+    "Recipient of Best Research Scholar Award 2024, GRI–DU.",
+    "GRI–JRF | PhD Research Scholar",
+    "Research — Employability • Students Psychology • Tourism Management",
+    "IT HR Experience — Talent & People Operations"
+  ];
+
+  /* ===== WIDTH LOCK AFTER FONTS LOAD ===== */
+  const probe = document.createElement("span");
+  probe.style.visibility = "hidden";
+  probe.style.whiteSpace = "nowrap";
+  probe.style.position = "absolute";
+  probe.style.fontFamily = getComputedStyle(typedEl).fontFamily;
+  document.body.appendChild(probe);
+
+  let maxWidth = 0;
+  roles.forEach(text => {
+    probe.textContent = text;
+    maxWidth = Math.max(maxWidth, probe.offsetWidth);
+  });
+
+  wrapEl.style.width = (maxWidth + 6) + "px"; // small safety buffer
+  document.body.removeChild(probe);
+
+  /* ===== TYPEWRITER LOGIC ===== */
+  let roleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function typ
+</script>
 
 </script>
 </body>
