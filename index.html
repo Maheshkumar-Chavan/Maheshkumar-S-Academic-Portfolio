@@ -426,20 +426,6 @@ html[data-theme="light"] .theme-toggle:hover {
 }
 </style>
 <style>
-/* Your existing styles... */
-
-.typed-wrap {
-  display: inline-block;
-  white-space: nowrap;   /* Prevent wrapping */
-  overflow: hidden;      /* Hide overflow */
-  position: relative;
-}
-
-#typed {
-  display: inline-block;
-  transition: opacity 0.4s ease-in-out;  /* Smooth fade */
-  opacity: 1;
-}
 /* Rest of your CSS... */
 /* ===============================
    REAL MOVING DOT — GUARANTEED
@@ -1453,105 +1439,7 @@ const radius = 0.2 * mmToPx;
     drawParticles();
 
   </script>
-  <script>
-// Your existing JS (menu toggle, theme toggle, etc.)
 
-const typedEl = document.getElementById('typed');
-const wrapEl = document.querySelector('.typed-wrap');
-
-const roles = [
-  'JRF — PhD Research Scholar',
-  'Research — Employability • Students Psychology • Tourism Management Ed.',
-  'IT HR Experience — Talent & People Operations'
-];
-
-// Set container width to longest text to prevent shaking
-const testSpan = document.createElement('span');
-testSpan.style.visibility = 'hidden';
-testSpan.style.position = 'absolute';
-testSpan.style.whiteSpace = 'nowrap';
-document.body.appendChild(testSpan);
-
-let maxWidth = 0;
-roles.forEach(word => {
-  testSpan.textContent = word + '|';
-  const w = testSpan.offsetWidth;
-  if (w > maxWidth) maxWidth = w;
-});
-wrapEl.style.width = maxWidth + 'px';
-document.body.removeChild(testSpan);
-
-// Typing effect with fade
-let ri = 0, ci = 0, del = false;
-function type() {
-  const word = roles[ri % roles.length];
-  
-  typedEl.style.opacity = 0; // fade out
-  setTimeout(() => {
-    typedEl.textContent = word.slice(0, ci) + '|';
-    typedEl.style.opacity = 1; // fade in
-  }, 200);
-
-  if (!del) {
-    ci++;
-    if (ci > word.length + 10) del = true;
-  } else {
-    ci--;
-    if (ci === 0) {
-      del = false;
-      ri++;
-    }
-  }
-  setTimeout(type, 120);
-}
-
-type();
-// Your existing JS (menu toggle, theme toggle, etc.)
-
-const typedEl = document.getElementById('typed');
-const wrapEl = document.querySelector('.typed-wrap');
-
-// Set container width to longest text to prevent shaking
-const testSpan = document.createElement('span');
-testSpan.style.visibility = 'hidden';
-testSpan.style.position = 'absolute';
-testSpan.style.whiteSpace = 'nowrap';
-document.body.appendChild(testSpan);
-
-let maxWidth = 0;
-roles.forEach(word => {
-  testSpan.textContent = word + '|';
-  const w = testSpan.offsetWidth;
-  if (w > maxWidth) maxWidth = w;
-});
-wrapEl.style.width = maxWidth + 'px';
-document.body.removeChild(testSpan);
-
-// Typing effect with fade
-let ri = 0, ci = 0, del = false;
-function type() {
-  const word = roles[ri % roles.length];
-  
-  typedEl.style.opacity = 0; // fade out
-  setTimeout(() => {
-    typedEl.textContent = word.slice(0, ci) + '|';
-    typedEl.style.opacity = 1; // fade in
-  }, 200);
-
-  if (!del) {
-    ci++;
-    if (ci > word.length + 10) del = true;
-  } else {
-    ci--;
-    if (ci === 0) {
-      del = false;
-      ri++;
-    }
-  }
-  setTimeout(type, 120);
-}
-
-type();
 <script>
   function attachHaptics() {
     const links = document.querySelectorAll("a");
@@ -1573,62 +1461,6 @@ type();
 
   document.addEventListener("DOMContentLoaded", attachHaptics);
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const typedEl = document.getElementById("typed");
-  const wrapEl = document.querySelector(".typed-wrap");
-
-  const roles = [
-    "Recipient of Best Research Scholar Award 2024, GRI–DU.",
-    "GRI–JRF | PhD Research Scholar",
-    "Employability • Students Psychology • Tourism Mngt",
-    "IT HR Experience — Talent & People Operations"
-  ];
-
-  /* Lock width to longest text */
-  const probe = document.createElement("span");
-  probe.style.visibility = "hidden";
-  probe.style.whiteSpace = "nowrap";
-  document.body.appendChild(probe);
-
-  let maxWidth = 0;
-  roles.forEach(r => {
-    probe.textContent = r;
-    maxWidth = Math.max(maxWidth, probe.offsetWidth);
-  });
-
-  wrapEl.style.width = maxWidth + "px";
-  document.body.removeChild(probe);
-
-  let roleIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
-
-  function typeLoop() {
-    const text = roles[roleIndex];
-
-    typedEl.textContent = text.slice(0, charIndex);
-
-    if (!deleting) {
-      charIndex++;
-      if (charIndex > text.length) {
-        deleting = true;
-        setTimeout(typeLoop, 1200);
-        return;
-      }
-    } else {
-      charIndex--;
-      if (charIndex === 0) {
-        deleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-      }
-    }
-
-    setTimeout(typeLoop, deleting ? 40 : 70);
-  }
-
-  typeLoop();
-});
 </script>
 <script>
 window.addEventListener("load", () => {
@@ -1644,7 +1476,7 @@ window.addEventListener("load", () => {
     "IT HR Experience — Talent & People Operations"
   ];
 
-  /* ===== WIDTH LOCK AFTER FONTS LOAD ===== */
+  /* ===== LOCK WIDTH AFTER FONTS LOAD ===== */
   const probe = document.createElement("span");
   probe.style.visibility = "hidden";
   probe.style.whiteSpace = "nowrap";
@@ -1658,17 +1490,39 @@ window.addEventListener("load", () => {
     maxWidth = Math.max(maxWidth, probe.offsetWidth);
   });
 
-  wrapEl.style.width = (maxWidth + 6) + "px"; // small safety buffer
+  wrapEl.style.width = (maxWidth + 8) + "px";
   document.body.removeChild(probe);
 
-  /* ===== TYPEWRITER LOGIC ===== */
   let roleIndex = 0;
   let charIndex = 0;
   let deleting = false;
 
-  function typ
+  function typeLoop() {
+    const current = roles[roleIndex];
+
+    typedEl.textContent = current.slice(0, charIndex);
+
+    if (!deleting) {
+      charIndex++;
+      if (charIndex > current.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1200);
+        return;
+      }
+    } else {
+      charIndex--;
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+
+    setTimeout(typeLoop, deleting ? 45 : 70);
+  }
+
+  typeLoop();
+});
 </script>
 
-</script>
 </body>
 </html>
