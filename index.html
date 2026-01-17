@@ -433,11 +433,16 @@ html[data-theme="light"] .theme-toggle:hover {
 }
 
 /* Mobile override */
+/* ===== TYPED TEXT — MOBILE STABILITY + PROFESSIONAL ALIGNMENT ===== */
 @media (max-width: 600px) {
   .typed-fixed {
-    max-width: 100%;
-    white-space: normal;   /* allow wrapping on mobile */
-    text-align: center;
+    display: block;
+    white-space: normal;      /* allow wrapping */
+    
+    min-height: 3.2em;       /* vertical space to stop shaking */
+    line-height: 1.6;
+
+    text-align: left;        /* ✅ LEFT-TO-RIGHT (professional) */
   }
 }
 </style>
