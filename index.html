@@ -1017,7 +1017,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- PEER REVIEW -->
 <section id="peerreview" class="card reveal">
   <h2 class="section-title">
-    <i class="fa-solid fa-user-check"></i> Journal Peer Review
+    <i class="fa-solid fa-user-check"></i> Journal Peer Reviewer
   </h2>
 
   <div class="table-wrap">
@@ -1039,8 +1039,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>TVET–Industry Collaboration & Graduate Employability</td>
           <td>Feb 2026</td>
           <td>
-            <a class="pill" target="_blank" href="https://drive.google.com/file/d/15fcKwViIMVL1TZoIqPFa3_6nUgHoWm9c/view?usp=share_link">
-              <i class="fa-solid fa-certificate"></i> Certificate
+           <a class="pill cert-link" target="_blank" href="https://drive.google.com/file/d/15fcKwViIMVL1TZoIqPFa3_6nUgHoWm9c/view?usp=share_link">
+           <i class="fa-solid fa-certificate"></i>
+           <span>Certificate</span>
             </a>
           </td>
         </tr>
@@ -1049,6 +1050,14 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
+<style>
+.cert-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;          /* space between icon and text */
+  white-space: nowrap;
+}
+</style>
 
     <!-- PUBLICATIONS -->
     <section id="publications" class="card reveal">
