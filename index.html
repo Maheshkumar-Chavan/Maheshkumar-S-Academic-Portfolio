@@ -1060,11 +1060,18 @@ document.addEventListener("DOMContentLoaded", () => {
     0 0 6px rgba(110,231,255,0.55),
     0 0 14px rgba(155,140,255,0.45);
 }
+.cert-link i{
+  font-size: 1.05em;  /* slightly larger than text */
+  color: var(--accent);
+  text-shadow:
+    0 0 6px rgba(110,231,255,0.65),
+    0 0 14px rgba(155,140,255,0.55);
+}
 .cert-link{
   display: inline-flex;
   align-items: center;
-  gap: 6px;          /* space between icon and text */
-  white-space: nowrap;
+  gap: 6px;           /* space between icon and text */
+  white-space: nowrap; /* prevents line break */
 }
 </style>
 
