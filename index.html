@@ -1042,7 +1042,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>
 <a class="pill cert-link" target="_blank" href="https://drive.google.com/file/d/15fcKwViIMVL1TZoIqPFa3_6nUgHoWm9c/view?usp=share_link">
   <i class="fa-solid fa-award"></i>
-  <span><strong>Certificate</strong></span>
+   <span class="cert-text">Certificate</span>
 </a>
           </td>
         </tr>
@@ -1052,6 +1052,14 @@ document.addEventListener("DOMContentLoaded", () => {
 </section>
 
 <style>
+.cert-text{
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--text);
+  text-shadow:
+    0 0 6px rgba(110,231,255,0.55),
+    0 0 14px rgba(155,140,255,0.45);
+}
 .cert-link{
   display: inline-flex;
   align-items: center;
