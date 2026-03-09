@@ -557,7 +557,47 @@ a.pill {
   100% { background-position: 200% 0%, 200% 0%, 200% 200%; }
 }
 
+
+/* =================================
+   GLOBAL CERTIFICATE LINK STYLE
+   ================================= */
+
+.cert-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+
+  font-weight:700;
+  letter-spacing:0.4px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(90deg,var(--accent),transparent,var(--accent)) border-box;
+
+  background-size:200% 100%;
+  animation: pill-border-sweep 4s linear infinite;
+}
+
+.cert-link i{
+  color:var(--accent);
+  text-shadow:
+    0 0 6px rgba(110,231,255,0.65),
+    0 0 14px rgba(155,140,255,0.55);
+}
+
+.cert-link span{
+  color:var(--text);
+  text-shadow:
+    0 0 6px rgba(110,231,255,0.55),
+    0 0 14px rgba(155,140,255,0.45);
+}
   </style>
+
+
 </head>
 <body>
   <!-- Particle background canvas -->
@@ -999,9 +1039,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <section id="achievements" class="card reveal">
       <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Academic Distinctions & Awards</h2>
       <ul>
-        <li>Best Research Scholar Award, securing First Prize for the academic year of 2024 at GRI–DU. <td><a target="_blank" href="https://drive.google.com/file/d/1MMzskk6ibI1VwA-t8hd6Q8lOgRouaQhp/view?usp=share_link">Certificate</a></td> </li>
-        <li>University First Class in B.Sc. Information Technology (MS University). <td><a target="_blank" href="https://drive.google.com/file/d/1Wu3H_i1f0-lmNQkjLgTVfKHZnmp_uxOY/view?usp=share_link">Certificate</a></td> </li>
-        <li>First Class with A++ in MBA (HRM & OM) at GRI–DTBU. <td><a target="_blank" href="https://drive.google.com/file/d/1J4brD28agW9-HU9qCltJCblBFzVqQ8YB/view?usp=share_link">Certificate</a></td> </li>
+        <li>Best Research Scholar Award, securing First Prize for the academic year of 2024 at GRI–DU. <td><a class="pill cert-link" target="_blank" href="https://drive.google.com/file/d/1MMzskk6ibI1VwA-t8hd6Q8lOgRouaQhp/view?usp=share_link"><i class="fa-solid fa-award"></i><span class="cert-text">Certificate</span></a></td></li>
+        <li>University First Class in B.Sc. Information Technology (MS University). <td><a class="pill cert-link" target="_blank" href="https://drive.google.com/file/d/1Wu3H_i1f0-lmNQkjLgTVfKHZnmp_uxOY/view?usp=share_link"><i class="fa-solid fa-award"></i><span class="cert-text">Certificate</span></a></td> </li>
+        <li>First Class with A++ in MBA (HRM & OM) at GRI–DTBU. <td><a class="pill cert-link" target="_blank" href="https://drive.google.com/file/d/1J4brD28agW9-HU9qCltJCblBFzVqQ8YB/view?usp=share_link"><i class="fa-solid fa-award"></i><span class="cert-text">Certificate</span></a></td> </li>
       </ul>
     </section>
 
