@@ -355,11 +355,13 @@ header .nav {
 
 /* Brand name in navbar */
 .nav a.brand {
-  font-family: 'Playfair Display', serif;  /* Same classic font */
-  font-weight: 700;                         /* Bold for prominence */
-  letter-spacing: 0.5px;                    /* Elegant spacing */
-  font-size: 1rem;                        /* Adjust size to your taste */
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: clamp(0.85rem, 1vw, 1rem); /* responsive size */
   color: var(--text);
+  white-space: nowrap;                 /* force single line */
+  flex-shrink: 0;                      /* prevent compression */
   transition: color 0.3s, transform 0.25s, box-shadow 0.25s;
 }
 
