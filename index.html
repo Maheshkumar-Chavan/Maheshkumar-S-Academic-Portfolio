@@ -156,7 +156,60 @@ html:not([data-theme="light"]) .theme-toggle {
     /* Tables */
     .table-wrap{overflow:auto; max-height:520px; border:1px solid var(--border); border-radius:12px}
     table{width:100%; border-collapse:collapse; min-width:800px}
-    th,td{padding:10px 12px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top}
+  
+      /* ===== PROFESSIONAL TABLE ALIGNMENT (SMART) ===== */
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          text-align: center; /* default center */
+        }
+
+        th, td {
+          padding: 10px 12px;
+          border-bottom: 1px solid var(--border);
+          text-align: center;      /* center by default */
+          vertical-align: middle;  /* clean vertical alignment */
+        }
+
+        /* Header */
+        thead th {
+          position: sticky;
+          top: 0;
+          background: var(--card);
+          z-index: 1;
+          text-align: center;
+        }
+
+        /* ===== KEEP LONG TEXT LEFT (READABILITY) ===== */
+
+        /* Publications */
+        #pubTable td:nth-child(2),  /* Journal */
+        #pubTable td:nth-child(3) { /* Article Title */
+          text-align: left;
+        }
+
+        /* Book Chapters */
+        #books td:nth-child(2),   /* Book */
+        #books td:nth-child(3) {  /* Chapter */
+          text-align: left;
+        }
+
+        /* Conferences */
+        #confTable td:nth-child(3), /* Type / Conference */
+        #confTable td:nth-child(4), /* Organizer / Venue */
+        #confTable td:nth-child(5) { /* Topic */
+          text-align: left;
+        }
+
+        /* Workshops */
+        #workshopTable td:nth-child(2) { /* Workshop */
+          text-align: left;
+        }
+
+        /* Seminars */
+        #seminars td:nth-child(2) { /* Seminar */
+          text-align: left;
+        }
     thead th{position:sticky; top:0; background:var(--card); z-index:1}
     .filters{display:flex; gap:10px; margin:8px 0 14px}
     .input{padding:10px 12px; border:1px solid var(--border); background:var(--card); color:var(--text); border-radius:10px}
