@@ -265,7 +265,7 @@ html:not([data-theme="light"]) #toTop {
 }
 
 /* ======================================================
-        UNIVERSAL RESPONSIVE NAVBAR
+   UNIFIED PROFESSIONAL RESPONSIVE NAVBAR
 ====================================================== */
 
 header{
@@ -274,6 +274,7 @@ header{
     z-index:9999;
     background:var(--bg);
     border-bottom:1px solid var(--border);
+    backdrop-filter:blur(12px) saturate(120%);
 }
 
 .container{
@@ -283,243 +284,205 @@ header{
 }
 
 .nav{
-
-display:grid;
-
-grid-template-columns:auto 1fr auto;
-
-align-items:center;
-
-height:68px;
-
-gap:18px;
-
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    height:68px;
+    gap:18px;
+    position:relative;
 }
 
 .nav .brand{
-
-font-family:'Playfair Display',serif;
-
-font-weight:700;
-
-font-size:1rem;
-
-white-space:nowrap;
-
-}
-
-.nav .links{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:14px;
-
-flex-wrap:nowrap;
-
-}
-
-.nav .links a{
-
-font-size:13px;
-
-padding:6px 8px;
-
-white-space:nowrap;
-
-}
-
-.theme-toggle{
-
-justify-self:end;
-
-}
-
-.menu-toggle{
-
-display:none;
-
-background:none;
-
-border:none;
-
-cursor:pointer;
-
-font-size:24px;
-
-color:var(--accent);
-
-}
-
-/* ---------- Large Desktop ---------- */
-
-@media (min-width:1700px){
-
-.nav .links{
-
-gap:18px;
-
-}
-
-.nav .links a{
-
-font-size:14px;
-
-padding:8px 10px;
-
-}
-
-}
-
-/* ---------- MacBook / Desktop ---------- */
-
-@media (max-width:1699px){
-
-.nav .links{
-
-gap:8px;
-
-}
-
-.nav .links a{
-
-font-size:12px;
-
-padding:5px 6px;
-
-}
-
-}
-
-/* ---------- Laptop / iPad / Tablet ---------- */
-
-@media (max-width:1199px){
-
-.menu-toggle{
-    display:block;
-    position:absolute;
-    left:0;
-    top:50%;
-    transform:translateY(-50%);
-}
-
-.nav .brand{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    text-align:center;
-    white-space:nowrap;
-}
-
-.nav .links{
-
-    display:none;
-
-    position:fixed;
-    top:68px;
-    left:0;
-
-    width:100%;
-    height:calc(100vh - 68px);
-
-    flex-direction:column;
-
-    background:var(--bg);
-
-    overflow-y:auto;
-    overflow-x:hidden;
-
-    -webkit-overflow-scrolling:touch;
-
-    border-top:1px solid var(--border);
-
-    box-shadow:var(--shadow);
-
-    padding:0 0 40px;
-
-    scroll-behavior:auto;
-}
-
-.nav .links.show{
-    display:flex;
-    overflow-y:auto;
-    overflow-x:hidden;
-    scroll-behavior:auto;
-
-    /* ALWAYS START FROM TOP */
-    position:fixed;
-    top:68px;
-    left:0;
-
-    transform:translateY(0);
-}
-
-.nav .links a{
-
-    width:100%;
-
-    padding:18px 26px;
-
-    font-family:'Playfair Display', serif;
-
-    font-size:1.08rem;
-
+    font-family:'Playfair Display',serif;
+    font-size:1rem;
     font-weight:700;
-
     letter-spacing:.5px;
+    white-space:nowrap;
+    color:var(--text);
+}
+
+.nav .links{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.nav .links a{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:'Playfair Display',serif;
+    font-size:.98rem;
+    font-weight:700;
+    letter-spacing:.45px;
 
     color:var(--text);
 
-    border-bottom:1px solid var(--border);
+    padding:10px 12px;
 
-    transition:all .25s ease;
+    border-radius:10px;
+
+    white-space:nowrap;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
-.nav .links a:hover,
-.nav .links a:active{
+.nav .links a:hover{
 
     color:var(--accent);
 
-    background:rgba(110,231,255,.05);
+    background:rgba(110,231,255,.06);
 
-    padding-left:34px;
+    transform:translateY(-2px);
 
-    transform:none;
+    box-shadow:0 0 12px rgba(110,231,255,.25);
 
-    box-shadow:none;
+}
+
+html[data-theme="light"] .nav .links a:hover{
+
+    box-shadow:0 0 10px rgba(0,0,0,.15);
+
 }
 
 .theme-toggle{
-    position:absolute;
-    right:0;
-    top:50%;
-    transform:translateY(-50%);
+    justify-self:end;
 }
 
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:var(--accent);
+    font-size:24px;
+    cursor:pointer;
 }
-/* ---------- Mobile ---------- */
+
+/* ================= Desktop ================= */
+
+@media (min-width:1200px){
+
+    .nav .links{
+        gap:8px;
+    }
+
+    .nav .links a{
+        font-size:.94rem;
+        padding:8px 10px;
+    }
+
+}
+
+/* ================= Tablet + Mobile ================= */
+
+@media (max-width:1199px){
+
+    .menu-toggle{
+        display:block;
+        position:absolute;
+        left:0;
+        top:50%;
+        transform:translateY(-50%);
+    }
+
+    .theme-toggle{
+        position:absolute;
+        right:0;
+        top:50%;
+        transform:translateY(-50%);
+    }
+
+    .nav .brand{
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+    }
+
+    .nav .links{
+
+        display:none;
+
+        position:fixed;
+
+        top:68px;
+        left:0;
+
+        width:100%;
+
+        height:calc(100vh - 68px);
+
+        flex-direction:column;
+
+        justify-content:flex-start;
+
+        gap:0;
+
+        background:var(--bg);
+
+        overflow-y:auto;
+
+        border-top:1px solid var(--border);
+
+        box-shadow:var(--shadow);
+
+    }
+
+    .nav .links.show{
+        display:flex;
+    }
+
+    .nav .links a{
+
+        width:100%;
+
+        justify-content:flex-start;
+
+        padding:18px 28px;
+
+        font-size:1rem;
+
+        border-bottom:1px solid var(--border);
+
+        border-radius:0;
+
+    }
+
+    .nav .links a:hover{
+
+        transform:none;
+
+        padding-left:34px;
+
+        background:rgba(110,231,255,.06);
+
+    }
+
+}
+
+/* ================= Small Phones ================= */
 
 @media (max-width:600px){
 
-.nav .brand{
+    .nav .brand{
 
-font-size:.9rem;
+        font-size:.92rem;
 
-max-width:180px;
+        max-width:200px;
 
-overflow:hidden;
+        overflow:hidden;
 
-text-overflow:ellipsis;
+        text-overflow:ellipsis;
+
+    }
 
 }
-
-}
-
-
-/* Brand name in navbar */
 .nav a.brand {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
