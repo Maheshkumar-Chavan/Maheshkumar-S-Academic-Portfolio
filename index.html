@@ -404,18 +404,47 @@ html[data-theme="light"] .nav .links a:hover{
     cursor:pointer;
 }
 
-/* ================= Desktop ================= */
+/* ================= Desktop Navbar ================= */
 
 @media (min-width:1200px){
 
-    .nav .links{
-        gap:8px;
-    }
+.nav{
+    display:grid;
+    grid-template-columns:220px 1fr 50px;
+    align-items:center;
+    min-height:82px;
+}
 
-    .nav .links a{
-        font-size:.94rem;
-        padding:8px 10px;
-    }
+.nav .brand{
+    justify-self:start;
+}
+
+.nav .links{
+    display:grid;
+    grid-template-columns:repeat(10,max-content);
+    justify-content:center;
+    justify-items:center;
+    column-gap:28px;
+    row-gap:14px;
+    margin:0 auto;
+    max-width:none;
+}
+
+.nav .links a{
+    padding:4px 0;
+    font-size:.95rem;
+}
+
+/* Second row */
+.nav .links a:nth-child(n+11){
+    grid-row:2;
+}
+
+/* Place last four exactly in the middle */
+.nav .links a:nth-child(11){grid-column:4;}
+.nav .links a:nth-child(12){grid-column:5;}
+.nav .links a:nth-child(13){grid-column:6;}
+.nav .links a:nth-child(14){grid-column:7;}
 
 }
 
