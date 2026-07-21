@@ -400,13 +400,18 @@ padding:5px 6px;
 
 .menu-toggle{
     display:block;
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
 }
 
-.nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:relative;
+.nav .brand{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    white-space:nowrap;
 }
 
 .nav .links{
@@ -456,8 +461,10 @@ padding:5px 6px;
 }
 
 .theme-toggle{
-    margin-left:auto;
-    margin-right:10px;
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
 }
 
 }
