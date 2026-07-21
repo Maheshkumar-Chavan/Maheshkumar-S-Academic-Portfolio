@@ -438,7 +438,9 @@ padding:5px 6px;
 
     box-shadow:var(--shadow);
 
-    padding-bottom:40px;
+    padding:0 0 40px;
+
+    scroll-behavior:auto;
 }
 
 .nav .links.show{
@@ -1761,34 +1763,49 @@ document.addEventListener("DOMContentLoaded", () => {
   <button id="toTop" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script>
-    const menuToggle = document.getElementById("menuToggle");
+   const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
+
+    function closeMenu() {
+        navLinks.classList.remove("show");
+        navLinks.scrollTo(0, 0);
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }
 
     menuToggle.addEventListener("click", function (e) {
 
         e.preventDefault();
         e.stopPropagation();
 
-        navLinks.classList.toggle("show");
+        if (navLinks.classList.contains("show")) {
 
-        this.innerHTML = navLinks.classList.contains("show")
-            ? '<i class="fa-solid fa-xmark"></i>'
-            : '<i class="fa-solid fa-bars"></i>';
+            closeMenu();
+
+        } else {
+
+            navLinks.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "instant"
+            });
+
+            navLinks.classList.add("show");
+
+            requestAnimationFrame(() => {
+                navLinks.scrollTop = 0;
+            });
+
+            menuToggle.innerHTML =
+                '<i class="fa-solid fa-xmark"></i>';
+        }
 
     });
 
     document.querySelectorAll("#navLinks a").forEach(link => {
 
-        link.addEventListener("click", () => {
-
-            navLinks.classList.remove("show");
-
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
-
-        });
+        link.addEventListener("click", closeMenu);
 
     });
 
@@ -1798,12 +1815,7 @@ if (menuToggle && navLinks) {
             !navLinks.contains(e.target) &&
             !menuToggle.contains(e.target)
         ) {
-
-            navLinks.classList.remove("show");
-
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
-
+            closeMenu();
         }
 
     });
