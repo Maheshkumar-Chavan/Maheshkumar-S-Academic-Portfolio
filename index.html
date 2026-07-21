@@ -560,20 +560,51 @@ html:not([data-theme="light"]) .profile-img:hover {
 html[data-theme="light"] .profile-img:hover {
   box-shadow: 0 10px 50px rgba(0,0,0,0.18);
 }
-/* Theme toggle hover glow */
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  transition: transform 0.25s, box-shadow 0.25s;
+/* ===============================
+   THEME TOGGLE - FIXED
+   =============================== */
+
+.theme-toggle{
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease,
+        color .25s ease;
+}
+
+/* Desktop */
+@media (min-width:1200px){
+
+.theme-toggle:hover{
+    transform:scale(1.06);
+}
+
+}
+
+/* Mobile */
+@media (max-width:1199px){
+
+.theme-toggle{
+    transform:translateY(-50%);
+}
+
+.theme-toggle:hover,
+.theme-toggle:active{
+    transform:translateY(-50%) scale(1.06);
+}
+
 }
 
 /* Dark theme glow */
-html:not([data-theme="light"]) .theme-toggle:hover {
-  box-shadow: 0 0 14px rgba(110,231,255,0.45), 0 0 30px rgba(155,140,255,0.30);
+html:not([data-theme="light"]) .theme-toggle:hover{
+    box-shadow:0 0 14px rgba(110,231,255,.45),
+               0 0 30px rgba(155,140,255,.30);
 }
 
 /* Light theme glow */
-html[data-theme="light"] .theme-toggle:hover {
-  box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
+html[data-theme="light"] .theme-toggle:hover{
+    box-shadow:0 0 14px rgba(0,0,0,.25),
+               0 0 30px rgba(0,0,0,.15);
 }
 /* ===== TYPED TEXT — DESKTOP + MOBILE SAFE ===== */
 .typed-fixed {
