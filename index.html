@@ -399,75 +399,68 @@ padding:5px 6px;
 @media (max-width:1199px){
 
 .menu-toggle{
-
-display:block;
-
+    display:block;
 }
 
 .nav{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-position:relative;
-
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
 }
 
 .nav .links{
 
-display:none;
+    display:none;
 
-position:absolute;
+    position:fixed;
+    top:68px;
+    left:0;
 
-top:100%;
+    width:100%;
+    height:calc(100vh - 68px);
 
-left:0;
+    flex-direction:column;
 
-width:100%;
+    background:var(--bg);
 
-flex-direction:column;
+    overflow-y:auto;
+    overflow-x:hidden;
 
-background:var(--bg);
+    -webkit-overflow-scrolling:touch;
 
-border-top:1px solid var(--border);
+    border-top:1px solid var(--border);
 
-box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
 
+    padding-bottom:40px;
 }
 
 .nav .links.show{
-
-display:flex;
-
+    display:flex;
 }
 
 .nav .links a{
 
-width:100%;
+    width:100%;
 
-padding:15px 18px;
+    padding:16px 20px;
 
-font-size:16px;
+    font-size:16px;
 
-border-bottom:1px solid var(--border);
+    border-bottom:1px solid var(--border);
 
-text-align:left;
+    text-align:left;
 
+    flex-shrink:0;
 }
 
 .theme-toggle{
-
-margin-left:auto;
-
-margin-right:10px;
-
+    margin-left:auto;
+    margin-right:10px;
 }
 
 }
-
 /* ---------- Mobile ---------- */
 
 @media (max-width:600px){
