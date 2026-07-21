@@ -305,17 +305,32 @@ header{
     flex:1;
     display:flex;
     align-items:center;
-    justify-content:flex-start;
+    justify-content:center;   /* Center both rows */
 
-    gap:20px;
+    gap:18px;
+    row-gap:12px;
 
-    overflow-x:auto;
-    overflow-y:hidden;
+    flex-wrap:wrap;
 
-    white-space:nowrap;
+    max-width:980px;
+    margin:0 auto;
+
+    overflow:visible;
+
+    white-space:normal;
 
     scrollbar-width:none;
     -ms-overflow-style:none;
+}
+
+.nav .links::-webkit-scrollbar{
+    display:none;
+}
+
+/* Make the last row perfectly centered */
+.nav .links::after{
+    content:"";
+    flex:999 0 auto;
 }
 
 .nav .links::-webkit-scrollbar{
