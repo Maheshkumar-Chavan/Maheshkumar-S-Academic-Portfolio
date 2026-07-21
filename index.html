@@ -1719,19 +1719,49 @@ document.addEventListener("DOMContentLoaded", () => {
 const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-    menuToggle.innerHTML = navLinks.classList.contains("show")
-      ? '<i class="fa-solid fa-xmark"></i>'
-      : '<i class="fa-solid fa-bars"></i>';
-  });
 
-  navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("show");
-      menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    menuToggle.addEventListener("click", function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        navLinks.classList.toggle("show");
+
+        this.innerHTML = navLinks.classList.contains("show")
+            ? '<i class="fa-solid fa-xmark"></i>'
+            : '<i class="fa-solid fa-bars"></i>';
+
     });
-  });
+
+    document.querySelectorAll("#navLinks a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navLinks.classList.remove("show");
+
+            menuToggle.innerHTML =
+                '<i class="fa-solid fa-bars"></i>';
+
+        });
+
+    });
+
+    document.addEventListener("click", function (e) {
+
+        if (
+            !navLinks.contains(e.target) &&
+            !menuToggle.contains(e.target)
+        ) {
+
+            navLinks.classList.remove("show");
+
+            menuToggle.innerHTML =
+                '<i class="fa-solid fa-bars"></i>';
+
+        }
+
+    });
+
 }
     
     // ===== Theme toggle =====
@@ -2001,24 +2031,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   type();
-  const menuToggle=document.getElementById("menuToggle");
-const navLinks=document.getElementById("navLinks");
-
-menuToggle.addEventListener("click",()=>{
-
-navLinks.classList.toggle("show");
-
-});
-
-document.querySelectorAll("#navLinks a").forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-navLinks.classList.remove("show");
-
-});
-
-});
+ 
 });
 </script>
 </body>
