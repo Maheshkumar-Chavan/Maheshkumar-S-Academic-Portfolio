@@ -285,10 +285,10 @@ header{
 }
 
 .nav{
-    display:flex;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
     align-items:center;
-    justify-content:space-between;
-    gap:28px;
+    gap:24px;
     height:72px;
 }
 
@@ -304,11 +304,29 @@ header{
 .nav .links{
     flex:1;
     display:flex;
-    justify-content:center;
     align-items:center;
-    gap:4px;
-    flex-wrap:nowrap;      /* Never wrap */
-    overflow:hidden;
+    justify-content:flex-start;
+
+    gap:20px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    white-space:nowrap;
+
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+.nav .links::-webkit-scrollbar{
+    display:none;
+}
+
+.nav .links a{
+    flex:0 0 auto;
+    padding:8px 0;
+    font-size:.95rem;
+    font-weight:600;
 }
 
 .nav .links a{
