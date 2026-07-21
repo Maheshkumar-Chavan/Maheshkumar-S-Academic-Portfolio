@@ -389,18 +389,80 @@ html[data-theme="light"] .nav .links a:hover{
     cursor:pointer;
 }
 
-/* ================= Desktop ================= */
+/* ================= PROFESSIONAL DESKTOP NAVBAR ================= */
 
 @media (min-width:1200px){
 
-    .nav .links{
-        gap:8px;
-    }
+.container{
+    max-width:1700px;
+    width:98%;
+    margin:auto;
+    padding:0 28px;
+}
 
-    .nav .links a{
-        font-size:.94rem;
-        padding:8px 10px;
-    }
+.nav{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    height:72px;
+    gap:36px;
+}
+
+.nav .brand{
+    font-size:1.18rem;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.nav .links{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:nowrap;
+
+    gap:14px;
+
+    overflow:visible;
+}
+
+.nav .links a{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:8px 0;
+
+    font-size:.82rem;
+    font-weight:700;
+
+    letter-spacing:.15px;
+
+    color:var(--text);
+
+    white-space:nowrap;
+
+    background:none;
+    border:none;
+    border-radius:0;
+
+    transition:.25s;
+}
+
+.nav .links a:hover{
+
+    color:var(--accent);
+
+    background:none;
+
+    transform:translateY(-2px);
+
+    box-shadow:none;
+}
+
+.theme-toggle{
+    justify-self:end;
+}
 
 }
 
