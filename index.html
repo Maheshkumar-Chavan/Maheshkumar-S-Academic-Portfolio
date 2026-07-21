@@ -404,48 +404,33 @@ html[data-theme="light"] .nav .links a:hover{
     cursor:pointer;
 }
 
-/* ================= Desktop Navbar ================= */
-
-@media (min-width:1200px){
-
-.nav{
-    display:grid;
-    grid-template-columns:220px 1fr 50px;
+.theme-toggle{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    display:flex;
     align-items:center;
-    min-height:82px;
-}
-
-.nav .brand{
-    justify-self:start;
-}
-
-.nav .links{
-    display:grid;
-    grid-template-columns:repeat(10,max-content);
     justify-content:center;
-    justify-items:center;
-    column-gap:28px;
-    row-gap:14px;
-    margin:0 auto;
-    max-width:none;
+    cursor:pointer;
+    background:var(--card);
+    color:var(--accent);
+    transition:.3s;
 }
 
-.nav .links a{
-    padding:4px 0;
-    font-size:.95rem;
+.theme-toggle:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 18px rgba(110,231,255,.35);
 }
 
-/* Second row */
-.nav .links a:nth-child(n+11){
-    grid-row:2;
+html[data-theme="light"] .theme-toggle{
+    background:#fff;
+    color:#111827;
 }
 
-/* Place last four exactly in the middle */
-.nav .links a:nth-child(11){grid-column:4;}
-.nav .links a:nth-child(12){grid-column:5;}
-.nav .links a:nth-child(13){grid-column:6;}
-.nav .links a:nth-child(14){grid-column:7;}
-
+html:not([data-theme="light"]) .theme-toggle{
+    background:#111827;
+    color:#6ee7ff;
 }
 
 /* ================= Tablet + Mobile ================= */
