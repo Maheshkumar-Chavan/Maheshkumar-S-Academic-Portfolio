@@ -264,145 +264,226 @@ html:not([data-theme="light"]) #toTop {
   cursor: pointer;
 }
 
-/* Mobile view */
-/* Base nav */
-.nav .links {
-  display: flex;
-  gap: 16px;
+/* ======================================================
+        UNIVERSAL RESPONSIVE NAVBAR
+====================================================== */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:9999;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
 }
 
-/* Mobile dropdown */
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: block;
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-    color: #7fbad1;
-  }
-
-  .nav {
-    position: relative;
-  }
-
-  .nav .links {
-    display: none; /* hidden by default */
-    flex-direction: column;
-    background: var(--bg, #fff); /* navbar background */
-    position: absolute;
-    top: 100%; /* appear below header */
-    left: 0;
-    width: 100%;
-    padding: 12px 0;
-    border-top: 1px solid var(--border, #ccc);
-
-    /* animation */
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-  }
-
-  .nav .links.show {
-    display: flex;
-    max-height: 500px; /* enough space for all items */
-  }
-
-  .nav .links a {
-    padding: 12px 16px;
-    font-size: 16px;
-    border-bottom: 1px solid var(--border, #ccc);
-  }
-
-  .nav .links a:last-child {
-    border-bottom: none;
-  }
-}
-/* Navbar menu font style */
-.nav .links a {
-  font-family: 'Playfair Display', serif; /* Classic serif font */
-  font-weight: 600;                        /* Slightly bold for clarity */
-  letter-spacing: 0.5px;                   /* Small spacing for elegance */
-  color: var(--muted);
-  transition: color 0.3s, transform 0.25s, box-shadow 0.25s;
+.container{
+    max-width:1600px;
+    margin:auto;
+    padding:0 18px;
 }
 
-/* Hover effect consistent with your glowing theme */
-.nav .links a:hover {
-  color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 0 14px rgba(110,231,255,0.45), 0 0 30px rgba(155,140,255,0.30);
+.nav{
+
+display:grid;
+
+grid-template-columns:auto 1fr auto;
+
+align-items:center;
+
+height:68px;
+
+gap:18px;
+
 }
 
-/* Light theme adjustment for hover glow */
-html[data-theme="light"] .nav .links a:hover {
-  box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.15);
+.nav .brand{
+
+font-family:'Playfair Display',serif;
+
+font-weight:700;
+
+font-size:1rem;
+
+white-space:nowrap;
+
 }
 
-/* ===== Desktop navbar layout fix ===== */
-@media (min-width: 901px) {
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+.nav .links{
 
-  .nav .links {
-    flex: 1;                    /* take available middle space */
-    display: flex;
-    justify-content: center;    /* center menu between brand & toggle */
-    flex-wrap: nowrap;          /* single line only */
-    white-space: nowrap;
-    overflow: visible;
-    gap: 14px;                  /* tighter spacing so all fit */
-  }
+display:flex;
 
-  .nav .links a {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    padding: 6px 8px;
-    font-size: 14px;            /* slight reduction to fit all */
-  }
+justify-content:center;
 
-  .theme-toggle {
-    flex-shrink: 0;             /* never overlap menu */
-  }
-}
-/* ===== Full-width navbar while keeping site centered ===== */
-header .nav {
-  max-width: 100%;
+align-items:center;
+
+gap:14px;
+
+flex-wrap:nowrap;
+
 }
 
-/* Desktop navbar layout */
-@media (min-width: 901px) {
-  header .nav {
-    display: grid !important;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-  }
+.nav .links a{
 
-  header .nav .links {
-    justify-self: center;
-    display: flex !important;
-    gap: 16px;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-  }
+font-size:13px;
 
-  header .nav .links a {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    font-size: 14px;
-    padding: 6px 8px;
-  }
+padding:6px 8px;
 
-  header .theme-toggle {
-    justify-self: end;
-    margin-left: 16px;
-  }
+white-space:nowrap;
+
+}
+
+.theme-toggle{
+
+justify-self:end;
+
+}
+
+.menu-toggle{
+
+display:none;
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+font-size:24px;
+
+color:var(--accent);
+
+}
+
+/* ---------- Large Desktop ---------- */
+
+@media (min-width:1700px){
+
+.nav .links{
+
+gap:18px;
+
+}
+
+.nav .links a{
+
+font-size:14px;
+
+padding:8px 10px;
+
+}
+
+}
+
+/* ---------- MacBook / Desktop ---------- */
+
+@media (max-width:1699px){
+
+.nav .links{
+
+gap:8px;
+
+}
+
+.nav .links a{
+
+font-size:12px;
+
+padding:5px 6px;
+
+}
+
+}
+
+/* ---------- Laptop / iPad / Tablet ---------- */
+
+@media (max-width:1199px){
+
+.menu-toggle{
+
+display:block;
+
+}
+
+.nav{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+position:relative;
+
+}
+
+.nav .links{
+
+display:none;
+
+position:absolute;
+
+top:100%;
+
+left:0;
+
+width:100%;
+
+flex-direction:column;
+
+background:var(--bg);
+
+border-top:1px solid var(--border);
+
+box-shadow:var(--shadow);
+
+}
+
+.nav .links.show{
+
+display:flex;
+
+}
+
+.nav .links a{
+
+width:100%;
+
+padding:15px 18px;
+
+font-size:16px;
+
+border-bottom:1px solid var(--border);
+
+text-align:left;
+
+}
+
+.theme-toggle{
+
+margin-left:auto;
+
+margin-right:10px;
+
+}
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:600px){
+
+.nav .brand{
+
+font-size:.9rem;
+
+max-width:180px;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+}
+
 }
 
 
@@ -417,13 +498,7 @@ header .nav {
   flex-shrink: 0;                      /* prevent compression */
   transition: color 0.3s, transform 0.25s, box-shadow 0.25s;
 }
-header .nav .links {
-  gap: 10px;
-}
 
-header .nav .links a {
-  font-size: 13px;
-}
 /* Hover effect for brand name */
 .nav a.brand:hover {
   color: var(--accent);
@@ -1926,6 +2001,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   type();
+  const menuToggle=document.getElementById("menuToggle");
+const navLinks=document.getElementById("navLinks");
+
+menuToggle.addEventListener("click",()=>{
+
+navLinks.classList.toggle("show");
+
+});
+
+document.querySelectorAll("#navLinks a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+navLinks.classList.remove("show");
+
+});
+
+});
 });
 </script>
 </body>
