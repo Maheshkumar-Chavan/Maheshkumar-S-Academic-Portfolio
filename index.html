@@ -445,6 +445,16 @@ padding:5px 6px;
 
 .nav .links.show{
     display:flex;
+    overflow-y:auto;
+    overflow-x:hidden;
+    scroll-behavior:auto;
+
+    /* ALWAYS START FROM TOP */
+    position:fixed;
+    top:68px;
+    left:0;
+
+    transform:translateY(0);
 }
 
 .nav .links a{
@@ -1768,10 +1778,33 @@ const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
 
+    function openMenu() {
+
+        // Force menu to start at About
+        navLinks.classList.add("show");
+
+        navLinks.scrollTop = 0;
+
+        requestAnimationFrame(() => {
+            navLinks.scrollTop = 0;
+        });
+
+        setTimeout(() => {
+            navLinks.scrollTop = 0;
+        }, 50);
+
+        menuToggle.innerHTML =
+            '<i class="fa-solid fa-xmark"></i>';
+    }
+
     function closeMenu() {
+
         navLinks.classList.remove("show");
-        navLinks.scrollTo(0, 0);
-        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+
+        navLinks.scrollTop = 0;
+
+        menuToggle.innerHTML =
+            '<i class="fa-solid fa-bars"></i>';
     }
 
     menuToggle.addEventListener("click", function (e) {
@@ -1780,25 +1813,9 @@ if (menuToggle && navLinks) {
         e.stopPropagation();
 
         if (navLinks.classList.contains("show")) {
-
             closeMenu();
-
         } else {
-
-            navLinks.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "instant"
-            });
-
-            navLinks.classList.add("show");
-
-            requestAnimationFrame(() => {
-                navLinks.scrollTop = 0;
-            });
-
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-xmark"></i>';
+            openMenu();
         }
 
     });
