@@ -500,11 +500,25 @@ text-overflow:ellipsis;
 }
 
 /* Hover effect for brand name */
+/* Desktop */
+@media (min-width:1200px){
 .nav a.brand:hover{
     color:var(--accent);
     transform:translateY(-2px);
     box-shadow:0 0 14px rgba(110,231,255,.45),
                0 0 30px rgba(155,140,255,.30);
+}
+}
+
+/* Mobile */
+@media (max-width:1199px){
+.nav a.brand:hover,
+.nav a.brand:active{
+    color:var(--accent);
+    transform:translateX(-50%) translateY(-2px);
+    box-shadow:0 0 14px rgba(110,231,255,.45),
+               0 0 30px rgba(155,140,255,.30);
+}
 }
 
 /* Light theme adjustment for hover glow */
@@ -547,28 +561,9 @@ html[data-theme="light"] .profile-img:hover {
   box-shadow: 0 10px 50px rgba(0,0,0,0.18);
 }
 /* Theme toggle hover glow */
-.theme-toggle{
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        background .25s ease;
-}
-
-@media (min-width:1200px){
-    .theme-toggle:hover{
-        transform:scale(1.06);
-    }
-}
-
-@media (max-width:1199px){
-    .theme-toggle{
-        transform:translateY(-50%);
-    }
-
-    .theme-toggle:hover,
-    .theme-toggle:active{
-        transform:translateY(-50%) scale(1.06);
-    }
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 /* Dark theme glow */
@@ -766,7 +761,7 @@ a.pill {
     </button>
 
 <!-- Brand -->
-<a class="brand" href="#home">Dr. Maheshkumar&nbsp;Sankar</a>
+<a class="brand" href="#home">Dr. Maheshkumar&nbsp;S</a>
 
     <!-- Toggle button (only for mobile) -->
 
